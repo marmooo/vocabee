@@ -1,7 +1,7 @@
 const CLIENT_ID = '945330460050-osmelc2uen8vhdesa6kd55vvjivkm5vs.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyD_EbPMAwZ9EDHiLHqGToi7-31ZnwXHams';
 const DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
+const SCOPES = "https://www.googleapis.com/auth/drive.file";
 let level;
 let enjaList = [];
 let draggies = [];
@@ -1023,12 +1023,18 @@ function initSheet() {
   }
 }
 
-function addSheet(spreadsheetId, title) {
-  return gapi.client.sheets.spreadsheets.batchUpdate({
-    spreadsheetId: spreadsheetId,
-    requests: [
-      { addSheet: { properties: { title:title }}}
-    ]
+function addSheet(spreadsheetId, title, callback) {
+  return gapi.client.sheets.spreadsheets.batchUpdate(
+    { spreadsheetId: spreadsheetId },
+    {
+      requests: [
+        { addSheet: { properties: { title:title }}}
+      ],
+    }
+  ).then(reponse => {
+    if (callback) { callback(response); }
+  }).catch(err => {
+    console.log(err);
   });
 }
 
