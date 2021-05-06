@@ -10,7 +10,7 @@ function generateProblems() {
   let i = 0;
   let count = 0;
   let data = [];
-  readEachLineSync('mGSL.lst', 'utf8', (line) => {
+  readEachLineSync('mGSL/dist/mGSL.lst', 'utf8', (line) => {
     count += 1;
     data.push(line.split('\t', 2).join('\t'));
     if (levelArray[i] == count) {
