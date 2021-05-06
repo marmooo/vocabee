@@ -1,6 +1,9 @@
 # Vocabee
 [英単語を効率的に学ぶアプリ](https://marmooo.github.io/vocabee/)です。
 
+## Installation
+install [mGSL](https://github.com/marmooo/mgsl)
+
 ## Build
 ```
 node build.js
