@@ -34,7 +34,8 @@
       #dragZone, #test1known, #test1learning { touch-action:manipulation; overflow:hidden; }
       #test1drag, #test1known, #test1learning { height:10rem; }
       progress { cursor:pointer; }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); background-color:black; }
+      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
+      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" media="print" onload="this.media='all'">
   </head>
