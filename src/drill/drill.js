@@ -697,22 +697,12 @@ function test2moveTop() {
   $('.carousel').carousel(0).carousel('dispose');
 }
 
-function test2put(lemma, obj) {
-  let state = enjaList.find(enja => enja[0] == lemma).state;
+function test2put(lemma, isCorrect) {
+  let state = enjaList.find(enja => enja[0] == lemma)[2];
   let currentState;
   let known = 0, unlearned = 0, learning = 0;
-  if (obj.textContent.includes('×')) {
-    currentState = 'x';
-    if (!state) {
-      unlearned -= 1;
-      learning += 1;
-      updateProgress(lemma, -1);
-    } else if (state.slice(-1) == 'o') {
-      known -= 1;
-      learning += 1;
-      updateProgress(lemma, -1);
-    }
-  } else {
+  let aaa = enjaList.find(enja => enja[0] == lemma);
+  if (isCorrect) {
     currentState = 'o';
     if (!state) {
       unlearned -= 1;
@@ -722,6 +712,16 @@ function test2put(lemma, obj) {
       learning -= 1;
       known += 1;
       updateProgress(lemma, 1);
+    }
+  } else {
+    currentState = 'x';
+    if (!state) {
+      unlearned -= 1;
+      learning += 1;
+    } else if (state.slice(-1) == 'o') {
+      known -= 1;
+      learning += 1;
+      updateProgress(lemma, -1);
     }
   }
   openDB(db => {
@@ -737,11 +737,12 @@ function test2select(obj) {
   const eiwa = document.getElementById('testType1').checked;
   if (obj.dataset.answer) {
     test2count += 1;
-    test2score += test2countScore();
+    const isCorrect = test2countScore();
+    test2score += isCorrect;
     correctAudio.play();
     obj.textContent = '○ ' + obj.textContent;
     const answerLemma = choices.find(c => c.isAnswer).en;
-    test2put(answerLemma, obj);
+    test2put(answerLemma, isCorrect);
     if (test2count > problemLength) {
       document.getElementById('score').textContent = test2score;
       $('.carousel').carousel(3).carousel('dispose');
