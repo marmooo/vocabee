@@ -864,7 +864,8 @@ function getAward(level) {
     case level <= 1400: return '高1';
     case level <= 1800: return '高2';
     case level <= 2600: return '高3';
-    case level <= 5000: return '大学生';
+    case level <= 4000: return '大学生';
+    case level <= 9000: return '社会人';
     case level <= 10000: return 'expatriater';
     case level <= 15000: return 'fighter';
     case level <= 20000: return 'knight';
