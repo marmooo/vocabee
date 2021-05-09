@@ -189,11 +189,11 @@ function getAward(level) {
     case level = 200: return '小6';
     case level = 400: return '中1';
     case level = 600: return '中2';
-    case level = 1000: return '中3';
+    case level = 800: return '中3';
     case level = 1200: return '高1';
     case level = 1600: return '高2';
-    case level = 2600: return '高3';
-    case level = 5000: return '大学生';
+    case level = 2200: return '高3';
+    case level = 3000: return '大学生';
     case level = 10000: return 'expatriater';
     case level = 15000: return 'fighter';
     case level = 20000: return 'knight';
