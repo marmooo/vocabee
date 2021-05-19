@@ -1,4 +1,4 @@
-var CACHE_NAME = '2021-05-20 09:00';
+var CACHE_NAME = '2021-05-19 14:00';
 var urlsToCache = [
   '/vocabee/',
   '/vocabee/index.js',
