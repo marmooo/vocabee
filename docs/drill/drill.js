@@ -161,7 +161,8 @@ function loadProgresses(states) {
   const progresses = [...document.getElementById('seqTest').children];
   progresses.forEach((progress, i) => {
     const [unlearned, known] = states[i];
-    const rate = Math.ceil(known / enjaList.length * 100);
+    const rate = Math.ceil(known / enjaList.length * 1000);
+    console.log(known, enjaList.length);
     progress.max   = enjaList.length / 10;
     progress.value = known;
     progress.title = rate + '%';
