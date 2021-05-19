@@ -16,6 +16,25 @@ const correctAudio = new Audio('/vocabee/mp3/correct3.mp3');
 const incorrectAudio = new Audio('/vocabee/mp3/incorrect1.mp3');
 loadConfig();
 initFromIndexedDB();
+const carousel = new bootstrap.Carousel(document.getElementById('main'), { interval:false });
+const modalNode = document.getElementById('modal');
+const modal = new bootstrap.Modal(modalNode);
+modalNode.addEventListener('shown.bs.modal', function(e) {
+  const obj = document.getElementById('modal-voice');
+  const en = obj.previousElementSibling.textContent;
+  document.getElementById('cse-search-input-box-id').value = en;
+  document.getElementById('___gcse_0').classList.add('d-none');
+  loopVoice(en, 3);
+});
+document.getElementById('test2voice').onclick = function() {
+  const text = this.previousElementSibling.textContent;
+  loopVoice(text, 3);
+}
+document.getElementById('modal-voice').onclick = function(obj) {
+  const text = obj.previousElementSibling.textContent;
+  loopVoice(text, 3);
+}
+
 
 function loadConfig() {
   if (localStorage.getItem('darkMode') == 1) {
@@ -48,24 +67,6 @@ function toggleVoice(obj) {
     document.getElementById('voiceOn').classList.remove('d-none');
     document.getElementById('voiceOff').classList.add('d-none');
   }
-}
-
-$('#modal').on('shown.bs.modal', function(e) {
-  const obj = document.getElementById('modal-voice');
-  const en = obj.previousElementSibling.textContent;
-  document.getElementById('cse-search-input-box-id').value = en;
-  document.getElementById('___gcse_0').classList.add('d-none');
-  loopVoice(en, 3);
-});
-
-document.getElementById('test2voice').onclick = function() {
-  const text = this.previousElementSibling.textContent;
-  loopVoice(text, 3);
-}
-
-document.getElementById('modal-voice').onclick = function(obj) {
-  const text = obj.previousElementSibling.textContent;
-  loopVoice(text, 3);
 }
 
 function unlockAudio() {
@@ -392,7 +393,7 @@ function test1moveTop() {
     pendingPush = true;
   }
   putIndex();
-  $('.carousel').carousel(0).carousel('dispose');
+  carousel.to(0);
 }
 
 function searchByGoogle(event) {
@@ -431,7 +432,7 @@ function addDragEvent(obj, meaning, reset) {
   draggie.on('staticClick', function() {
     document.getElementById('meaning').textContent = meaning[1].split('|').join(', ');
     document.getElementById('modal-title').textContent = meaning[0];
-    $('#modal').modal('toggle');
+    modal.toggle('toggle');
   });
   draggie.on('dragStart', function(event, pointer) {
     const rect1 = obj.getBoundingClientRect();
@@ -539,7 +540,7 @@ function test1cleanup() {
   [...document.getElementById('seqTest').children].forEach(progress => {
     progress.removeAttribute('data-testing');
   });
-  $('.carousel').carousel(1).carousel('dispose');
+  carousel.to(1);
 }
 
 function test1(type) {
@@ -671,7 +672,7 @@ function test2(obj) {
   } else {
     document.getElementById('test2voice').classList.add('d-none');
   }
-  $('.carousel').carousel(2).carousel('dispose');
+  carousel.to(2);
 }
 
 function test2countScore() {
@@ -694,7 +695,7 @@ function test2moveTop() {
     pendingPush = true;
   }
   putIndex();
-  $('.carousel').carousel(0).carousel('dispose');
+  carousel.to(0);
 }
 
 function test2put(lemma, isCorrect) {
@@ -745,7 +746,7 @@ function test2select(obj) {
     test2put(answerLemma, isCorrect);
     if (test2count > problemLength) {
       document.getElementById('score').textContent = test2score;
-      $('.carousel').carousel(3).carousel('dispose');
+      carousel.to(3);
     } else {
       const nextChoices = test2problems[test2count - 1];
       test2setResult(test2count, nextChoices);

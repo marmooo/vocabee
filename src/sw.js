@@ -1,4 +1,4 @@
-var CACHE_NAME = '2021-05-10 09:00';
+var CACHE_NAME = '2021-05-20 09:00';
 var urlsToCache = [
   '/vocabee/',
   '/vocabee/index.js',
@@ -6,10 +6,9 @@ var urlsToCache = [
   '/vocabee/drill/drill.js',
   '/vocabee/mp3/incorrect1.mp3',
   '/vocabee/mp3/correct3.mp3',
-  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js',
   'https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css',
-  'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js',
-  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js',
   'https://cdn.jsdelivr.net/npm/draggabilly@2.3.0/dist/draggabilly.pkgd.min.js',
 ];
 
