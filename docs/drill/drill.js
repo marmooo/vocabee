@@ -16,7 +16,7 @@ const correctAudio = new Audio('/vocabee/mp3/correct3.mp3');
 const incorrectAudio = new Audio('/vocabee/mp3/incorrect1.mp3');
 loadConfig();
 initFromIndexedDB();
-const carousel = new bootstrap.Carousel(document.getElementById('main'), { interval:false });
+const carousel = new bootstrap.Carousel(document.getElementById('main'), { interval:false, touch:false });
 const modalNode = document.getElementById('modal');
 const modal = new bootstrap.Modal(modalNode);
 modalNode.addEventListener('shown.bs.modal', function(e) {
@@ -394,7 +394,7 @@ function test1moveTop() {
     pendingPush = true;
   }
   putIndex();
-  carousel.to(0);
+  carousel.to(0).pause();
 }
 
 function searchByGoogle(event) {
@@ -541,7 +541,7 @@ function test1cleanup() {
   [...document.getElementById('seqTest').children].forEach(progress => {
     progress.removeAttribute('data-testing');
   });
-  carousel.to(1);
+  carousel.to(1).pause();
 }
 
 function test1(type) {
@@ -673,7 +673,7 @@ function test2(obj) {
   } else {
     document.getElementById('test2voice').classList.add('d-none');
   }
-  carousel.to(2);
+  carousel.to(2).pause();
 }
 
 function test2countScore() {
@@ -696,7 +696,7 @@ function test2moveTop() {
     pendingPush = true;
   }
   putIndex();
-  carousel.to(0);
+  carousel.to(0).pause();
 }
 
 function test2put(lemma, isCorrect) {
@@ -747,7 +747,7 @@ function test2select(obj) {
     test2put(answerLemma, isCorrect);
     if (test2count > problemLength) {
       document.getElementById('score').textContent = test2score;
-      carousel.to(3);
+      carousel.to(3).pause();
     } else {
       const nextChoices = test2problems[test2count - 1];
       test2setResult(test2count, nextChoices);
