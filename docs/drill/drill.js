@@ -394,7 +394,7 @@ function test1moveTop() {
     pendingPush = true;
   }
   putIndex();
-  carousel.to(0).pause();
+  carousel.to(0);
 }
 
 function searchByGoogle(event) {
@@ -541,7 +541,7 @@ function test1cleanup() {
   [...document.getElementById('seqTest').children].forEach(progress => {
     progress.removeAttribute('data-testing');
   });
-  carousel.to(1).pause();
+  carousel.to(1);
 }
 
 function test1(type) {
@@ -673,7 +673,7 @@ function test2(obj) {
   } else {
     document.getElementById('test2voice').classList.add('d-none');
   }
-  carousel.to(2).pause();
+  carousel.to(2);
 }
 
 function test2countScore() {
@@ -696,7 +696,7 @@ function test2moveTop() {
     pendingPush = true;
   }
   putIndex();
-  carousel.to(0).pause();
+  carousel.to(0);
 }
 
 function test2put(lemma, isCorrect) {
@@ -747,7 +747,7 @@ function test2select(obj) {
     test2put(answerLemma, isCorrect);
     if (test2count > problemLength) {
       document.getElementById('score').textContent = test2score;
-      carousel.to(3).pause();
+      carousel.to(3);
     } else {
       const nextChoices = test2problems[test2count - 1];
       test2setResult(test2count, nextChoices);
