@@ -469,13 +469,17 @@ function setProblems(method, targetState) {
   test1method = method;
   const problems = getTargetStateProblems(targetState);
   const dragZone = document.getElementById('dragZone');
-  const objs = [...dragZone.children];
-  problems.forEach((p, i) => {
-    addDragEvent(objs[i], p);
+  const lemmas = [...dragZone.children];
+  lemmas.forEach((lemma, i) => {
+    if (i >= problems.length) {
+      lemma.classList.add('d-none');
+    } else {
+      addDragEvent(lemma, problems[i]);
+    }
   });
   const test1noneed = document.getElementById('test1noneed');
-  objs.slice(problems.length).forEach(obj => {
-    test1noneed.appendChild(obj);
+  lemmas.slice(problems.length).forEach(lemma => {
+    test1noneed.appendChild(lemma);
   });
 }
 
@@ -510,7 +514,11 @@ function setUnlearnedProblems() {
   const problems = getUnlearnedProblems();
   const dragZone = document.getElementById('dragZone');
   [...dragZone.children].forEach((lemma, i) => {
-    addDragEvent(lemma, problems[i]);
+    if (i >= problems.length) {
+      lemma.classList.add('d-none');
+    } else {
+      addDragEvent(lemma, problems[i]);
+    }
   });
 }
 
@@ -522,7 +530,11 @@ function setSeqTestProblems(obj) {
   const currProblems = enjaList.slice(pos * num, pos * num + num);
   const dragZone = document.getElementById('dragZone');
   [...dragZone.children].forEach((lemma, i) => {
-    addDragEvent(lemma, currProblems[i]);
+    if (i >= currProblems.length) {
+      lemma.classList.add('d-none');
+    } else {
+      addDragEvent(lemma, currProblems[i]);
+    }
   });
 }
 
@@ -536,6 +548,7 @@ function test1cleanup() {
     .concat([...test1learning.firstElementChild.children])
     .concat([...test1noneed.children]);
   movedLemma.forEach(lemma => {
+    lemma.classList.remove('d-none');
     dragZone.appendChild(lemma);
   });
   [...document.getElementById('seqTest').children].forEach(progress => {
