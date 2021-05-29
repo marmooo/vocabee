@@ -107,14 +107,14 @@
           </div>
           <div class="row pt-4">
             <div class="col-sm pb-3">
-              <h5>全範囲のテスト
+              <h5>四択テスト
                 <button class="btn p-1" title="使い方のヒント" data-bs-toggle="collapse" data-bs-target="#usageTest"
                   aria-expand="false" aria-controls="usageTest">💡</button>
               </h5>
               <div class="collapse" id="usageTest">
                 <div class="card card-body mb-3">
                   <span>分類と学習が終わり、ほぼ <span class="badge bg-secondary">知ってる</span>
-                  になったら、最終確認として4択テストをしてみましょう。
+                  になったら、最終確認として四択テストをしてみましょう。
                   </span>
                 </div>
               </div>
@@ -129,7 +129,8 @@
                 </div>
               </div>
               <div class="text-center py-3">
-                <button onclick="test2()" class="btn btn-primary btn-lg">4択テストする</button>
+                <button onclick="test2all()" class="btn btn-primary btn-lg m-1">全範囲をテストする</button>
+                <button onclick="test2learning()" class="btn btn-primary btn-lg m-1">自信なしをテストする</button>
               </div>
             </div>
             <div class="col-sm">
@@ -143,16 +144,16 @@
                 </div>
               </div>
               <div id="seqTest">
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
-                <progress onclick="test2(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
+                <progress onclick="test2seq(this)" class="w-100" max="100" value="0" title="0%"></progress>
               </div>
             </div>
           </div>
