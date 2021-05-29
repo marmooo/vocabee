@@ -15,11 +15,11 @@
     <title>Vocabee</title>
     <meta name="description" content="利用頻度の高い必須英単語を効率に学ぶためのアプリです。">
     <script>
-      // if ('serviceWorker' in navigator) {
-      //   window.addEventListener('load', function() {
-      //     navigator.serviceWorker.register('/vocabee/sw.js');
-      //   });
-      // }
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/vocabee/sw.js');
+        });
+      }
     </script>
     <link rel="apple-touch-icon" sizes="180x180" href="/vocabee/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="48x48" href="/vocabee/favicon/favicon-48x48.png">
