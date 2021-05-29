@@ -11,7 +11,8 @@ let test2score = 0;
 let test2problems = [];
 let englishVoices = [];  loadVoices();
 let pendingPush;
-const problemLength = 20;  // 多すぎると復習しにくい
+let testLength = 20;
+const maxTestLength = 20;  // 多すぎると復習しにくい
 const correctAudio = new Audio('/vocabee/mp3/correct3.mp3');
 const incorrectAudio = new Audio('/vocabee/mp3/incorrect1.mp3');
 loadConfig();
@@ -470,16 +471,13 @@ function setProblems(method, targetState) {
   const problems = getTargetStateProblems(targetState);
   const dragZone = document.getElementById('dragZone');
   const lemmas = [...dragZone.children];
+  const test1noneed = document.getElementById('test1noneed');
   lemmas.forEach((lemma, i) => {
     if (i >= problems.length) {
-      lemma.classList.add('d-none');
+      test1noneed.appendChild(lemma);
     } else {
       addDragEvent(lemma, problems[i]);
     }
-  });
-  const test1noneed = document.getElementById('test1noneed');
-  lemmas.slice(problems.length).forEach(lemma => {
-    test1noneed.appendChild(lemma);
   });
 }
 
@@ -488,7 +486,7 @@ function getTargetStateProblems(targetState) {
   enjaList.some(enja => {
     if (enja[2] && enja[2].slice(-1) == targetState) {
       problems.push(enja);
-      if (problems.length >= problemLength) {
+      if (problems.length >= maxTestLength) {
         return true;
       }
     }
@@ -501,7 +499,7 @@ function getUnlearnedProblems() {
   enjaList.some(p => {
     if (!p[2]) {
       result.push(p);
-      if (result.length >= problemLength) {
+      if (result.length >= maxTestLength) {
         return true;
       }
     }
@@ -513,27 +511,12 @@ function setUnlearnedProblems() {
   test1method = 'unlearned';
   const problems = getUnlearnedProblems();
   const dragZone = document.getElementById('dragZone');
+  const test1noneed = document.getElementById('test1noneed');
   [...dragZone.children].forEach((lemma, i) => {
     if (i >= problems.length) {
-      lemma.classList.add('d-none');
+      test1noneed.appendChild(lemma);
     } else {
       addDragEvent(lemma, problems[i]);
-    }
-  });
-}
-
-function setSeqTestProblems(obj) {
-  test1method = 'unlearned';
-  obj.setAttribute('data-testing', true);
-  const num = enjaList.length / 10;
-  const pos = [...obj.parentNode.children].indexOf(obj);
-  const currProblems = enjaList.slice(pos * num, pos * num + num);
-  const dragZone = document.getElementById('dragZone');
-  [...dragZone.children].forEach((lemma, i) => {
-    if (i >= currProblems.length) {
-      lemma.classList.add('d-none');
-    } else {
-      addDragEvent(lemma, currProblems[i]);
     }
   });
 }
@@ -548,11 +531,7 @@ function test1cleanup() {
     .concat([...test1learning.firstElementChild.children])
     .concat([...test1noneed.children]);
   movedLemma.forEach(lemma => {
-    lemma.classList.remove('d-none');
     dragZone.appendChild(lemma);
-  });
-  [...document.getElementById('seqTest').children].forEach(progress => {
-    progress.removeAttribute('data-testing');
   });
   carousel.to(1);
 }
@@ -575,23 +554,30 @@ class Choice {
   }
 }
 
-function test2selectAnswers() {
-  const progresses = [...document.getElementById('seqTest').children];
-  const progressPos = progresses.findIndex(progress => progress.hasAttribute('data-testing'));
+function test2selectAnswers(type, progressPos) {
   let tmpProblems = enjaList.concat();
-  if (progressPos < 0) {
-    shuffle(tmpProblems);
-    return tmpProblems.slice(0, problemLength);
-  } else {
-    const testLength = tmpProblems.length / 10;
-    const pos = testLength * progressPos;
-    const answers = tmpProblems.slice(pos, pos + testLength);
-    return shuffle(answers).slice(0, problemLength);
+  switch (type) {
+    case 'all':
+      shuffle(tmpProblems);
+      return tmpProblems.slice(0, maxTestLength);
+    case 'learning':
+      const target = tmpProblems.filter(enja => enja[2] && enja[2].slice(-1) == 'x');
+      if (target.length < maxTestLength) {
+        return target;
+      } else {
+        return target.slice(0, maxTestLength);
+      }
+    default:
+      const progressLength = tmpProblems.length / 10;
+      const pos = progressLength * progressPos;
+      const answers = tmpProblems.slice(pos, pos + progressLength);
+      return shuffle(answers).slice(0, maxTestLength);
   }
 }
 
-function test2generateProblems() {
-  const answers = test2selectAnswers();
+function test2generateProblems(type, progressPos) {
+  const answers = test2selectAnswers(type, progressPos);
+  testLength = answers.length;
   let problems = [];
   answers.forEach(answer => {
     const choices = test2generateChoices(answer);
@@ -670,13 +656,24 @@ function test2setResult(count, choices) {
   tds[1].textContent = choices[0].desc;
 }
 
-function test2(obj) {
-  if (obj) {
-    obj.setAttribute('data-testing', true);
-  }
+function test2all() {
+  test2base('all')
+}
+
+function test2learning() {
+  test2base('learning')
+}
+
+function test2seq(obj) {
+  const progresses = [...document.getElementById('seqTest').children];
+  const progressPos = progresses.findIndex(progress => progress == obj);
+  test2base('seq', progressPos)
+}
+
+function test2base(type, progressPos) {
+  test2problems = test2generateProblems(type, progressPos);
   test2count = 1;
   test2score = 0;
-  test2problems = test2generateProblems();
   const buttons = [...document.getElementById('choices').children];
   const eiwa = document.getElementById('testType1').checked;
   test2setResult(test2count, test2problems[0]);
@@ -698,9 +695,6 @@ function test2moveTop() {
   const results = test2getTrs();
   results.forEach(result => {
     result.classList.remove('table-danger');
-  });
-  [...document.getElementById('seqTest').children].forEach(progress => {
-    progress.removeAttribute('data-testing');
   });
   if (navigator.onLine) {
     pushWords();
@@ -758,7 +752,8 @@ function test2select(obj) {
     obj.textContent = '○ ' + obj.textContent;
     const answerLemma = choices.find(c => c.isAnswer).en;
     test2put(answerLemma, isCorrect);
-    if (test2count > problemLength) {
+    console.log(testLength);
+    if (test2count > testLength) {
       document.getElementById('score').textContent = test2score;
       carousel.to(3);
     } else {
