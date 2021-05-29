@@ -471,16 +471,13 @@ function setProblems(method, targetState) {
   const problems = getTargetStateProblems(targetState);
   const dragZone = document.getElementById('dragZone');
   const lemmas = [...dragZone.children];
+  const test1noneed = document.getElementById('test1noneed');
   lemmas.forEach((lemma, i) => {
     if (i >= problems.length) {
-      lemma.classList.add('d-none');
+      test1noneed.appendChild(lemma);
     } else {
       addDragEvent(lemma, problems[i]);
     }
-  });
-  const test1noneed = document.getElementById('test1noneed');
-  lemmas.slice(problems.length).forEach(lemma => {
-    test1noneed.appendChild(lemma);
   });
 }
 
@@ -514,9 +511,10 @@ function setUnlearnedProblems() {
   test1method = 'unlearned';
   const problems = getUnlearnedProblems();
   const dragZone = document.getElementById('dragZone');
+  const test1noneed = document.getElementById('test1noneed');
   [...dragZone.children].forEach((lemma, i) => {
     if (i >= problems.length) {
-      lemma.classList.add('d-none');
+      test1noneed.appendChild(lemma);
     } else {
       addDragEvent(lemma, problems[i]);
     }
@@ -533,7 +531,6 @@ function test1cleanup() {
     .concat([...test1learning.firstElementChild.children])
     .concat([...test1noneed.children]);
   movedLemma.forEach(lemma => {
-    lemma.classList.remove('d-none');
     dragZone.appendChild(lemma);
   });
   carousel.to(1);
