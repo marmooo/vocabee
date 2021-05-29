@@ -395,7 +395,7 @@ function test1moveTop() {
     pendingPush = true;
   }
   putIndex();
-  carousel.to(0);
+  moveTop();
 }
 
 function searchByGoogle(event) {
@@ -519,6 +519,10 @@ function setUnlearnedProblems() {
       addDragEvent(lemma, problems[i]);
     }
   });
+}
+
+function moveTop() {
+  carousel.to(0);
 }
 
 function test1cleanup() {
@@ -703,7 +707,7 @@ function test2moveTop() {
     pendingPush = true;
   }
   putIndex();
-  carousel.to(0);
+  moveTop();
 }
 
 function test2put(lemma, isCorrect) {
