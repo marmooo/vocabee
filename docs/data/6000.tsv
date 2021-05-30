@@ -1,6 +1,8 @@
+grad	同一階級に属する物(人)|等級|程度|階級|年級|学年|成績
+fibre	fiber(繊維)の英国式綴り
+caravan	キャラバン|隊商|幌馬車|移住民の車馬隊|キャンピングカー(和製英語)
 delegation	代表団|代議員団|権力などの委任
 handler	トレーナー|調教師
-eds	イーディーエス
 reproduce	を生殖させる|を複製する|を模写する|を再生する
 computational	計算の
 greenhouse	温室|温室効果の|温暖化の
@@ -24,7 +26,6 @@ crane	ツル|鶴|クレーン
 arbitrary	独断的な|任意の|気まぐれの|恣意的な|不定の
 prominent	目立った|重要な|著名な|突出した|浮き彫りの
 titanium	チタン
-irs	国税庁
 sediment	沈澱物|沈殿物|堆積物
 superintendent	監督(指揮)する|監督者|最高責任者|監督･指揮する
 recorder	レコーダー|録音機
@@ -77,6 +78,7 @@ supplemental	補足の
 emerald	エメラルド
 recognised	認識
 sheriff	郡保安官
+scat	(音楽･ジャズで)スキャット(する)(歌詞の代わりに無意味な音節を繰り返す歌・歌い方)|(犬猫など|命令形で)あっちへ行け
 belle	舞踏会の花|美人
 corrupt	堕落させる|堕落した|買収された|崩れた|汚れる
 uh	ええと|huh(話がつかえた時など)
@@ -166,6 +168,7 @@ controversy	論争|討論
 crow	からす|鳴く
 hostel	簡易宿泊所|ホステル|宿泊所|合宿所
 insulin	インスリン(糖尿病薬)
+nudity	裸体(像|画)
 compute	算定する
 mileage	総マイル数|マイル表示距離|マイル当たり料金|利益
 specially	特に|特別に
@@ -173,7 +176,6 @@ pale	色を失った|青ざめる|青白い|(色に関して)薄い|迫力がな
 ambient	周囲の|ぐるりを取り巻く
 covenant	契約する|(二国間または多国間の)契約|盟約|誓約|約款
 feat	偉業|功績|際だった行い|achievement|妙技|離れ業
-xerox	コピー|ゼロックス|コピー
 steak	ステーキ
 being	生き物|存在|実在|生存|生命
 plaque	額|飾り版|斑|歯垢|血小板|(金属･陶器の)飾り板|(記念の)銘板|ブローチ
@@ -261,7 +263,6 @@ lend	貸す
 pharmacist	薬剤師
 mime	物まね師|パントマイム|真似る|パントマイムで演じる
 polyester	ポリエステル|ポリエステル樹脂|ポリエステル繊維
-afterwards	のちほど|後で|逐って|後程|後ほど|おって|あと|追って
 webpage	Webページ
 garlic	ニンニク
 tooth	歯|(複数形はteeth)|(食物の)好み
@@ -316,6 +317,7 @@ enroll	登録する|名簿に記載する|会員にする|enrol
 carb	炭水化物(carbohydrateの略)
 rotary	回る
 importantly	もったいぶって|重要で
+rb	rb|スクリプト言語Rubyで書かれたファイルの拡張子 2|ルビジウム(Rb)の元素記号
 moss	コケ|こけ|沼|コケで覆う
 lecturer	講演者|講師
 pretend	ふりをする|make believe
@@ -332,7 +334,6 @@ ritual	慣習の|儀式(の)|礼拝式|儀式的な行事
 distortion	歪み|ゆがめること|歪曲
 rig	艤装する装備する|談合する|八百長する|トレーラートラック|掘削装置
 fuse	ヒューズ|信管|導火線|にヒューズを付ける|溶かす|溶ける|融合･連合する
-crawford	クロフォード|クロフォード
 historian	歴史家
 vase	花瓶|壷|びん
 holocaust	ホロコースト|ユダヤ人大虐殺
@@ -344,7 +345,6 @@ burke	締め殺す|(議案などを)握りつぶす|(うわさなどを)もみ�
 secretariat	書記|秘書室
 shortage	数量の不足|不足|欠点
 stool	丸椅子|腰掛け|足のせ台|2便器|大便(=excrement)
-chevy	悩ます|煩わす|嫌がらせ|責めさいなむ|責める|いたぶる|責苛む|煩わせる|苛む|苦しめる
 elimination	削除|除去|予選|排除|排泄|淘汰|消去
 toss	を投げる|寝返りをうつ|を激しく動揺させる
 jumper	跳躍する人|跳躍選手|跳びはねる虫(ノミ他)|障害馬|(ブラウスなどの上に着る)プルオーバー|作業用上着 (日本語のジャンパーはwindbreaker, jacket)
@@ -462,6 +462,7 @@ conditioner	空調(冷暖房)装置
 prosecutor	起訴者|検事|検察官
 induce	勧誘する|人に勧めて～させる|を引き起こす|(反)exclude|除外する
 scandal	スキャンダル|醜聞|恥ずべきこと
+masturbation	手淫|オナニー
 explode	爆発させる(する)|打破する|破裂する|感情が激発する|評判を覆す
 peripheral	周辺の|末梢性の
 negotiation	交渉|話し合い|(小切手など)譲渡|談判|流通
@@ -487,18 +488,17 @@ voyage	航海|船旅|飛行|航海記|航海する|(海を)渡る
 notable	注目に値する|著しい|著名な|名士|著名な事物
 petitioner	原告|請願者
 sedan	セダン|セダン型自動車
-aw	(抗議・嫌悪などを表して)おお|うわあ
 elf	(小)妖精|小人|小妖精
 defensive	防御の
 accelerate	の速度を速める|加速する|速める|促進する|増進する
 pear	西洋ナシ|西洋梨
 acknowledgement	(UK綴)承認|通知|自認|受取の通知|感謝|礼状|謝意
 flasher	閃光を放つもの|点滅光|方向指示器|回転灯|露出狂
+knob	ノブを付ける|ノブ|こぶ
 subaru	スバル(車名)
 pouch	小袋|袋|を袋に入れる|ポーチ
 vanilla	バニラ|バニラの実|バニラエッセンス
 chancellor	ドイツの首相
-cw	clockwise
 nucleus	細胞核|核|心|中軸
 practitioner	開業医師|熟練家
 flute	フルートを吹く|フルート(横笛)
@@ -556,13 +556,12 @@ colleague	同僚|仲間
 promptly	すぐに|敏速に|即座に|ぴったり
 courtyard	中庭
 harmful	害をおよぼす|有害な
-paintball	ペイントボール|ペイントボール
 prozac	プロザック|抗うつ剤(商品名)
+sexually	性的に
 inhibit	することを禁ずる|を抑制する|妨げる
 reign	支配する|主権を握る|在位期間|治世|御代|支配|統治|君臨
 solicitor	懇願者|事務弁護士|勧誘員|個別訪問の販売員
 neon	ネオン(元素記号Ne)
-kw	キロワット
 glucose	ぶどう糖
 squeeze	締めつける|を絞る|圧迫する|強制する|規制|圧搾
 competence	能力|権限
@@ -591,7 +590,6 @@ verbal	言葉の|語の|文字通りの|口頭の|動詞の
 bitter	苦々しい|悲惨な|苦い|ひどい
 terminology	専門用語|術語|用語法|術語学
 presently	まもなく|やがて|目下|只今
-workflow	ワークフロー|作業の流れ
 scarf	スカーフ|接合
 mysterious	神秘的な|不可解な|秘密の
 suppress	を抑圧する|鎮定する|抑える|を鎮圧する|を我慢する|を隠す
@@ -612,7 +610,6 @@ erotica	エロティカ|性愛の文学作品
 temporal	現世の|時間の|俗世の|束の間の|側頭の|時制の
 sanctuary	聖地|聖域|庇護|神殿|保護|鳥獣保護区域|安らぎの場所
 maturity	満期|成熟|十分な成長
-firmware	ファームウエア|マイクロコード|ファームウェア|ファアームウエア
 rave	夢中になって話す|たわごとを言う|どなる|わめく|怒号する
 defect	不足|欠点|短所|欠陥|亡命する|他国へ逃亡する
 qt	quiet|quantity|quart 他の略
@@ -640,8 +637,6 @@ evanescence	(物・気持ちなどが)次第に消えていくこと
 cheer	声援|を励ます
 debit	借方(に記入する)|デビット
 pyramid	ピラミッド|金字塔|尖塔状のもの|角錐|利乗り
-lm	ルーメン
-applet	アプレット
 mambo	マンボ(を踊る)
 designate	指定する|指摘する|示す|表す|指名する
 legendary	伝説集|伝説の
@@ -662,8 +657,6 @@ sigh	ため息をつく|ため息(をつく)|嘆く|慕う
 insulation	絶縁体|絶縁|絶縁材
 streamline	流線型(の)|(仕事･組織など)を合理化する
 collaborate	共同する|協力する|共同して働く|共同研究する
-zoloft	サートラリン
-frankfurt	フランクフォート|フランクフルト
 prisoner	囚人|刑事被告人|捕虜
 linkage	関連|連関
 accession	追加|就任|増加|到達|即位|相続|取得
@@ -684,7 +677,6 @@ waist	腰のくびれ|ウエスト|胴着|ブラウス
 instrumentation	計測(器)
 elk	オオジカ|ヘラジカ
 balcony	バルコニー
-ob	オビ川|産科学|産科|ＯＢ
 breathe	(を)呼吸する
 congregation	集会|集合|会衆
 alley	路地|alley cat 野良猫|おはじき(遊び)
@@ -762,7 +754,6 @@ underwater	水中の
 quartz	クオーツ|石英
 pirate	海賊|略奪者|を略奪する|著作権を侵害する
 kindergarten	幼稚園
-pbs	リン酸緩衝食塩水
 humour	humorのUK式綴
 nay	《古語》否,いや(no)|《文語》そればかりでなく,それどころか|拒絶|否定|反対投票(者)
 reactor	(陽性)反応を示す人|反応者|反応器|反応炉|原子炉
@@ -786,11 +777,8 @@ disconnect	ばらばらにする|絶つ|の関係(接続)を断つ|分離する|
 hm	うーん
 khan	汗(かん)(モンゴルなどの統治者の称号)|隊商の宿舎
 habit	習慣|癖
-cancun	カンクン
-bach	ヨハン・ゼバスティアン・バッハ
 voter	投票者|投票権所有者|選挙人
 botanical	植物学の|植物の
-capri	カプリ
 gemstone	宝石用原石
 pumpkin	(植物)カボチャ|セイヨウカボチャ|まぬけ|ぶざまな人
 imagery	イメージ|像
@@ -899,7 +887,6 @@ delphi	神託地|デルファイ(古代ギリシャのアポロンの神話地)
 emotion	感動|感情
 timetable	時刻表|予定表
 slipknot	引き結び(結び目の一方の端を引けばすぐほどける結び方)
-mst	山岳部時間
 versatile	多方面な|多才な|融通がきく|変わりやすい|八方美人の
 organise	組織化する|団結する
 profitable	有益な
@@ -933,7 +920,6 @@ duplex	重複の|二連の
 nelly	安ブドウ酒|おかまっぽい男|女みたいな男
 unsecured	安全でない|保証(担保)のない
 philosopher	哲学者|哲人|賢人
-eb	電子ブック|電子ブック
 appropriately	適切に
 inactive	活動しない|怠惰な|緩慢な|受身的な
 newsroom	ニュース編集室|報道室
@@ -964,7 +950,6 @@ hen	メンドリ|雌鶏|(鳥･魚の)雌|女
 limo	リムジン
 rotate	回転する
 approximation	近付くこと|接近|近似|近似値
-suv	a high-performance four-wheel drive car built on a truck chassis
 lacrosse	ラクロッス|ラクロス(ホッケーに似た球技)
 duplication	重複
 dentist	歯科医|歯医者
@@ -989,7 +974,6 @@ shrimp	小エビ|ちび|とるに足らない物
 stroller	ベビーカー|放浪者|vagrant
 buckle	バックル|曲げる
 gradient	こう配|変化度|勾配
-dolby	ドルビー
 condominium	分譲アパート|共同管理|マンション
 reinforce	部隊を強化する|を補強する|を強める|強化する
 plea	嘆願|陳述|弁解|抗弁
@@ -998,3 +982,19 @@ semantic	意味の
 dia	直径(diameter) cf. 半径(radius)
 concurrent	同時の|同時に起こる|同意見の|に伴う|兼務の|共同に作用する|協力の(cooperating)
 globalization	グローバル化
+paddle	水かき|櫂|へら|ラケット|パドル|をたたく|ラケットで打つ|ぴちゃぴちゃさせる
+pulmonary	肺の|肺疾患の
+harsh	厳しい|ざらざらした|不快な|耳ざわりな
+aperture	孔|(光などがもれる)隙間|開口|(レンズなどの)口径|(カメラなどの)絞り
+resonance	共鳴|共振
+pistol	ピストル|ピストルで撃つ
+lag	遅れる|懲役に処する|遅延|前科者
+unfair	公正を欠いた|不公平な|ずるい|不正な|不当な
+electronically	電子的に
+rookie	新人
+inspirational	鼓舞する
+dungeon	地下牢
+infantry	歩兵
+renowned	有名な|高名な|名高い
+philosophical	理性的な|哲学の|賢明な
+vacant	空き
