@@ -163,7 +163,6 @@ function loadProgresses(states) {
   progresses.forEach((progress, i) => {
     const [unlearned, known] = states[i];
     const rate = Math.ceil(known / enjaList.length * 1000);
-    console.log(known, enjaList.length);
     progress.max   = enjaList.length / 10;
     progress.value = known;
     progress.title = rate + '%';
@@ -286,7 +285,7 @@ function putWordsBase(id, count, state) {
     return enjaList.findIndex(enja => enja[0] == lemma);  // TODO: slow?
   });
   lemmas.forEach((lemma, i) => {
-    updateEnjaListState(poses[i], count);
+    updateEnjaListState(poses[i], state);
     putWord(lemma, state);
   });
   return poses;
@@ -299,20 +298,12 @@ function putWordsFromTest1() {
   return [knownPoses.length, learningPoses.length];
 }
 
-function updateEnjaListState(lemmaPos, knownCount) {
+function updateEnjaListState(lemmaPos, state) {
   const prevState = enjaList[lemmaPos][2];
-  if (knownCount > 0) {
-    if (prevState) {
-      enjaList[lemmaPos][2] += 'o';
-    } else {
-      enjaList[lemmaPos][2] = 'o';
-    }
-  } else if (knownCount < 0) {
-    if (prevState) {
-      enjaList[lemmaPos][2] += 'x';
-    } else {
-      enjaList[lemmaPos][2] = 'x';
-    }
+  if (prevState) {
+    enjaList[lemmaPos][2] += state;
+  } else {
+    enjaList[lemmaPos][2] = state;
   }
 }
 
@@ -342,10 +333,8 @@ function updateProgresses(lemmaPoses, knownCount) {
   return total;
 }
 
-function updateProgress(lemma, knownCount) {
+function updateProgress(lemma, lemmaPos, knownCount) {
   const progresses = [...document.getElementById('seqTest').children];
-  const lemmaPos = enjaList.findIndex(p => p[0] == lemma);  // TODO: slow?
-  updateEnjaListState(lemmaPos, knownCount);
   const progressPos = Math.floor(lemmaPos / (enjaList.length / 10));
   const progress = progresses[progressPos];
   const knownValue = parseInt(progress.value) + knownCount;
@@ -711,29 +700,32 @@ function test2moveTop() {
 }
 
 function test2put(lemma, isCorrect) {
-  let state = enjaList.find(enja => enja[0] == lemma)[2];
+  const lemmaPos = enjaList.findIndex(enja => enja[0] == lemma);
+  let state = enjaList[lemmaPos][2];
   let currentState;
   let known = 0, unlearned = 0, learning = 0;
   if (isCorrect) {
     currentState = 'o';
+    updateEnjaListState(lemmaPos, currentState);
     if (!state) {
       unlearned -= 1;
       known += 1;
-      updateProgress(lemma, 1);
+      updateProgress(lemma, lemmaPos, 1);
     } else if (state.slice(-1) == 'x') {
       learning -= 1;
       known += 1;
-      updateProgress(lemma, 1);
+      updateProgress(lemma, lemmaPos, 1);
     }
   } else {
     currentState = 'x';
+    updateEnjaListState(lemmaPos, currentState);
     if (!state) {
       unlearned -= 1;
       learning += 1;
     } else if (state.slice(-1) == 'o') {
       known -= 1;
       learning += 1;
-      updateProgress(lemma, -1);
+      updateProgress(lemma, lemmaPos, -1);
     }
   }
   openDB(db => {
@@ -755,7 +747,6 @@ function test2select(obj) {
     obj.textContent = '○ ' + obj.textContent;
     const answerLemma = choices.find(c => c.isAnswer).en;
     test2put(answerLemma, isCorrect);
-    console.log(testLength);
     if (test2count > testLength) {
       document.getElementById('score').textContent = test2score;
       carousel.to(3);
