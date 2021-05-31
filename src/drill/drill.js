@@ -714,7 +714,6 @@ function test2put(lemma, isCorrect) {
   let state = enjaList.find(enja => enja[0] == lemma)[2];
   let currentState;
   let known = 0, unlearned = 0, learning = 0;
-  let aaa = enjaList.find(enja => enja[0] == lemma);
   if (isCorrect) {
     currentState = 'o';
     if (!state) {
