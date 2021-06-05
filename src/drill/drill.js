@@ -649,6 +649,15 @@ function test2setResult(count, choices) {
   tds[1].textContent = choices[0].desc;
 }
 
+function test2cleanResult(count, choices) {
+  const trs = test2getTrs();
+  trs.forEach(tr => {
+    const tds = tr.children;
+    tds[0].textContent = '';
+    tds[1].textContent = '';
+  });
+}
+
 function test2all() {
   test2base('all')
 }
@@ -669,6 +678,7 @@ function test2base(type, progressPos) {
   test2score = 0;
   const buttons = [...document.getElementById('choices').children];
   const eiwa = document.getElementById('testType1').checked;
+  test2cleanResult();
   test2setResult(test2count, test2problems[0]);
   test2setButtons(eiwa, buttons, test2problems[0]);
   if (eiwa) {
@@ -749,6 +759,7 @@ function test2select(obj) {
     test2put(answerLemma, isCorrect);
     if (test2count > testLength) {
       document.getElementById('score').textContent = test2score;
+      document.getElementById('testLength').textContent = testLength;
       carousel.to(3);
     } else {
       const nextChoices = test2problems[test2count - 1];
