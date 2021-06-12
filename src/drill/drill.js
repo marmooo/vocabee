@@ -673,6 +673,10 @@ function test2seq(obj) {
 }
 
 function test2base(type, progressPos) {
+  const results = test2getTrs();
+  results.forEach(result => {
+    result.classList.remove('table-danger');
+  });
   test2problems = test2generateProblems(type, progressPos);
   test2count = 1;
   test2score = 0;
@@ -695,10 +699,6 @@ function test2countScore() {
 }
 
 function test2moveTop() {
-  const results = test2getTrs();
-  results.forEach(result => {
-    result.classList.remove('table-danger');
-  });
   if (navigator.onLine) {
     pushWords();
     pushIndex();
