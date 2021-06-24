@@ -35,6 +35,13 @@ document.getElementById('modal-voice').onclick = function(obj) {
   const text = obj.previousElementSibling.textContent;
   loopVoice(text, 3);
 }
+test2getTrs().forEach(tr => {
+  const tds = tr.children;
+  const button = tds[0].firstChild;
+  button.onclick = function() {
+    loopVoice(tds[1].textContent, 1);
+  }
+});
 
 
 function loadConfig() {
@@ -645,16 +652,18 @@ function test2setResult(count, choices) {
   const trs = test2getTrs();
   const tr = trs[count - 1];
   const tds = tr.children;
-  tds[0].textContent = choices[0].en;
-  tds[1].textContent = choices[0].desc;
+  tds[0].firstChild.textContent = '🔊';
+  tds[1].textContent = choices[0].en;
+  tds[2].textContent = choices[0].desc;
 }
 
 function test2cleanResult(count, choices) {
   const trs = test2getTrs();
   trs.forEach(tr => {
     const tds = tr.children;
-    tds[0].textContent = '';
+    tds[0].firstChild.textContent = '';
     tds[1].textContent = '';
+    tds[2].textContent = '';
   });
 }
 
