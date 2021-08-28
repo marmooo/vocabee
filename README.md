@@ -9,7 +9,7 @@ install [marmooo/mGSL](https://github.com/marmooo/mgsl)
 ## Build
 
 ```
-node build.js
+deno run --allow-read --allow-write build.js
 bash build.sh
 ```
 
