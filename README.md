@@ -4,7 +4,8 @@
 
 ## Installation
 
-install [marmooo/mGSL](https://github.com/marmooo/mgsl)
+install [marmooo/mGSL](https://github.com/marmooo/mgsl) licensed under the
+[CC-BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 
 ## Build
 
@@ -12,8 +13,3 @@ install [marmooo/mGSL](https://github.com/marmooo/mgsl)
 deno run --allow-read --allow-write build.js
 bash build.sh
 ```
-
-## Attribution
-
-- [marmooo/mGSL](https://github.com/marmooo/mgsl) is licensed under the
-  [CC-BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
