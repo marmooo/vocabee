@@ -866,7 +866,7 @@ function updateSigninStatus(isSignedIn) {
 //   const trElements = progresses.getElementsByTagName("tr");
 //   const trs = [...trElements].slice(1);
 //   const pos = trs.findIndex((tr) => {
-//     const level = parseInt(tr.firstChild.innerText);
+//     const level = parseInt(tr.children[1].textContent);
 //     if (clearedLevel < level) {
 //       return true;
 //     } else {

@@ -174,7 +174,7 @@ function updatePlan(clearedLevel) {
     });
   } else {
     const pos = trs.findIndex((tr) => {
-      const level = parseInt(tr.firstChild.innerText);
+      const level = parseInt(tr.children[1].textContent);
       if (clearedLevel < level) {
         return true;
       }
