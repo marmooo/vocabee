@@ -42,7 +42,7 @@
       <nav class="navbar navbar-expand">
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/vocabee/">
-            <img src="/vocabee/favicon/original.svg" width="32" height="32">
+            <img alt="Vocabee" src="/vocabee/favicon/original.svg" width="32" height="32">
             Vocabee
           </a>
           <div class="navbar-nav">
@@ -51,7 +51,7 @@
             </button>
             <button title="音声を自動再生" id="voice" class="btn p-0 ms-1">
               <svg id="voiceOn" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
-              <svg id="voiceOff" class="d-none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16"><path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/></svg>
+              <svg id="voiceOff" class="d-none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16"><path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/></svg>
             </button>
             <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0 ms-1">🌓</button>
           </div>
@@ -75,8 +75,9 @@
           </div>
           <div class="text-center">
             <h5>単語一覧
-              <button class="btn p-1" title="使い方のヒント" data-bs-toggle="collapse" data-bs-target="#usageBasic"
-                aria-expand="false" aria-controls="usageBasic">💡</button>
+              <button class="btn p-1" title="使い方のヒント"
+                data-bs-toggle="collapse" data-bs-target="#usageBasic"
+                aria-expanded="false" aria-controls="usageBasic">💡</button>
             </h5>
             <div class="collapse" id="usageBasic">
               <div class="card card-body mb-3">
@@ -89,19 +90,19 @@
               <div class="col">
                 <button id="knownButton" class="w-100 btn btn-secondary" disabled>
                   知ってる
-                  <div id="known">0</div>
+                  <span id="known" class="d-block">0</span>
                 </button>
               </div>
               <div class="col px-0">
                 <button id="unlearnedButton" class="w-100 btn btn-secondary" disabled>
                   未学習
-                  <div id="unlearned">200</div>
+                  <span id="unlearned" class="d-block">200</span>
                 </button>
               </div>
               <div class="col">
                 <button id="learningButton" class="w-100 btn btn-secondary" disabled>
                   自信なし
-                  <div id="learning">0</div>
+                  <span id="learning" class="d-block">0</span>
                 </button>
               </div>
             </div>
@@ -109,8 +110,9 @@
           <div class="row pt-4">
             <div class="col-sm pb-3">
               <h5>四択テスト
-                <button class="btn p-1" title="使い方のヒント" data-bs-toggle="collapse" data-bs-target="#usageTest"
-                  aria-expand="false" aria-controls="usageTest">💡</button>
+                <button class="btn p-1" title="使い方のヒント"
+                  data-bs-toggle="collapse" data-bs-target="#usageTest"
+                  aria-expanded="false" aria-controls="usageTest">💡</button>
               </h5>
               <div class="collapse" id="usageTest">
                 <div class="card card-body mb-3">
@@ -122,11 +124,11 @@
               <div class="text-center">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="testType" id="testType1" value="A" checked>
-                  <label class="form-check-label" for="radio1">英和</label>
+                  <label class="form-check-label" for="testType1">英和</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="testType" id="testType2" value="B">
-                  <label class="form-check-label" for="radio2">和英</label>
+                  <label class="form-check-label" for="testType2">和英</label>
                 </div>
               </div>
               <div class="text-center py-3">
@@ -136,8 +138,9 @@
             </div>
             <div class="col-sm">
               <h5>頻度別の理解度
-                <button class="btn p-1" title="使い方のヒント" data-bs-toggle="collapse" data-bs-target="#usageOrdered"
-                  aria-expand="false" aria-controls="usageOrdered">💡</button>
+                <button class="btn p-1" title="使い方のヒント"
+                  data-bs-toggle="collapse" data-bs-target="#usageOrdered"
+                  aria-expanded="false" aria-controls="usageOrdered">💡</button>
               </h5>
               <div class="collapse" id="usageOrdered">
                 <div class="card card-body mb-3">
