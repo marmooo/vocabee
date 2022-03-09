@@ -10,7 +10,7 @@ var urlsToCache = [
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js",
   "https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css",
-  "https://cdn.jsdelivr.net/npm/draggabilly@2.3.0/dist/draggabilly.pkgd.min.js",
+  "https://cdn.jsdelivr.net/npm/draggabilly@3.0.0/dist/draggabilly.pkgd.min.js",
 ];
 
 self.addEventListener("install", function (event) {
