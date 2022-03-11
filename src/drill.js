@@ -107,15 +107,15 @@ function loadEnjaListFromIndexedDB(level, callback) {
         dict[word.lemma] = word.state;
       });
       enjaList = [];
-      fetch("/vocabee/data/" + level + ".tsv").then((response) =>
-        response.text()
-      ).then((text) => {
-        text.split("\n").forEach((line) => {
-          const [en, ja] = line.split("\t");
-          enjaList.push([en, ja, dict[en]]);
+      fetch("/vocabee/data/" + level + ".tsv")
+        .then((response) => response.text())
+        .then((text) => {
+          text.split("\n").forEach((line) => {
+            const [en, ja] = line.split("\t");
+            enjaList.push([en, ja, dict[en]]);
+          });
+          callback();
         });
-        callback();
-      });
     });
   });
 }
@@ -985,16 +985,16 @@ function loadEnjaListFromSheet(range, callback) {
       dict[lemma] = state;
     }
   }
-  return fetch("/vocabee/data/" + level + ".tsv").then((response) =>
-    response.text()
-  ).then((text) => {
-    enjaList = [];
-    text.split("\n").forEach((line) => {
-      const [en, ja] = line.split("\t");
-      enjaList.push([en, ja, dict[en]]);
+  return fetch("/vocabee/data/" + level + ".tsv")
+    .then((response) => response.text())
+    .then((text) => {
+      enjaList = [];
+      text.split("\n").forEach((line) => {
+        const [en, ja] = line.split("\t");
+        enjaList.push([en, ja, dict[en]]);
+      });
+      callback();
     });
-    callback();
-  });
 }
 
 function getSheetPos(level) {
