@@ -344,7 +344,7 @@ function updateViewByKnown() {
 }
 
 function updateViewByLearning() {
-  putWordsBase("test1known", "o");
+  const knownPoses = putWordsBase("test1known", "o");
   putWordsBase("test1learning", "x");
   const knownCount = updateProgresses(knownPoses, 1);
   updatePlans(knownCount, 0, -knownCount);

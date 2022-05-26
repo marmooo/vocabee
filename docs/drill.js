@@ -25,7 +25,7 @@ function updateProgresses(lemmaPoses,knownCount){const data={};const progresses=
 return total;}
 function updateProgress(lemmaPos,knownCount){const progresses=[...document.getElementById("seqTest").children];const progressPos=Math.floor(lemmaPos/(enjaList.length/10));const progress=progresses[progressPos];const knownValue=parseInt(progress.value)+knownCount;const maxValue=parseInt(progress.max);progress.value=knownValue;progress.title=Math.ceil(knownValue/maxValue*100)+"%";progress.classList.add("animate__animated","animate__bounceInLeft");}
 function updateViewByKnown(){putWordsBase("test1known","o");const learningPoses=putWordsBase("test1learning","x");const knownCount=updateProgresses(learningPoses,-1);updatePlans(knownCount,0,-knownCount);}
-function updateViewByLearning(){putWordsBase("test1known","o");putWordsBase("test1learning","x");const knownCount=updateProgresses(knownPoses,1);updatePlans(knownCount,0,-knownCount);}
+function updateViewByLearning(){const knownPoses=putWordsBase("test1known","o");putWordsBase("test1learning","x");const knownCount=updateProgresses(knownPoses,1);updatePlans(knownCount,0,-knownCount);}
 function test1moveTop(){draggies.forEach((draggie)=>{draggie.destroy();});draggies=[];switch(test1method){case "known":{updateViewByKnown();break;}
 case "unlearned":{const[known,learning]=putWordsFromTest1();updatePlans(known,-known-learning,learning);break;}
 case "learning":{updateViewByLearning();break;}}
