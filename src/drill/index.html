@@ -73,7 +73,7 @@
 sudo apt install festival speech-dispatcher-festival</code></pre>
           </div>
           <div class="alert alert-dark p-5 text-center">
-            <h2><span id="levelFrom"></span>-<span id="levelTo"></span></h2>
+            <h2 class="notranslate"><span id="levelFrom"></span>-<span id="levelTo"></span></h2>
             <div><span id="levelText"></span> 水準の単語です。</div>
           </div>
           <div class="text-center">
@@ -93,19 +93,19 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
               <div class="col">
                 <button id="knownButton" class="w-100 btn btn-secondary" disabled>
                   知ってる
-                  <span id="known" class="d-block">0</span>
+                  <span id="known" class="d-block notranslate">0</span>
                 </button>
               </div>
               <div class="col px-0">
                 <button id="unlearnedButton" class="w-100 btn btn-secondary" disabled>
                   未学習
-                  <span id="unlearned" class="d-block">200</span>
+                  <span id="unlearned" class="d-block notranslate">200</span>
                 </button>
               </div>
               <div class="col">
                 <button id="learningButton" class="w-100 btn btn-secondary" disabled>
                   自信なし
-                  <span id="learning" class="d-block">0</span>
+                  <span id="learning" class="d-block notranslate">0</span>
                 </button>
               </div>
             </div>
@@ -172,42 +172,44 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
             </button>
           </div>
           <p>💡 単語を <span class="badge bg-secondary">知ってる</span> または <span class="badge bg-secondary">自信なし</span> のどちらかにドラッグして振り分けてください。</p>
-          <div id="test1known" class="alert alert-success">知ってる
-            <div class="pt-3">
+          <div id="test1known" class="alert alert-success">
+            <div>知ってる</div>
+            <div class="pt-3 notranslate">
             </div>
           </div>
           <div id="test1drag" class="alert alert-primary text-center d-flex px-2">
             <div id="dragZone">
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
             </div>
             <div id="test1moveTop" class="m-auto text-center d-none">
               <button class="btn btn-primary btn-lg">続ける</button>
             </div>
           </div>
-          <div id="test1learning" class="alert alert-success">自信なし
-            <div class="pt-3">
+          <div id="test1learning" class="alert alert-success">
+            <div>自信なし</div>
+            <div class="pt-3 notranslate">
             </div>
           </div>
-          <div id="test1noneed" class="d-none"></div>
+          <div id="test1noneed" class="d-none notranslate"></div>
         </div>
         <div id="test2panel" class="carousel-item">
           <div class="text-center">

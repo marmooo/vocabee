@@ -272,7 +272,7 @@ function putWords() {
 }
 
 function putWordsBase(id, state) {
-  const objs = [...document.getElementById(id).firstElementChild.children];
+  const objs = [...document.getElementById(id).lastElementChild.children];
   const lemmas = objs.map((e) => e.textContent);
   const poses = lemmas.map((lemma) => {
     return enjaList.findIndex((enja) => enja[0] == lemma); // TODO: slow?
@@ -442,11 +442,11 @@ function addDragEvent(obj, meaning, reset) {
     obj.removeAttribute("style");
     obj.classList.remove("btn-lg");
     if (draggie.position.y < 0) {
-      const root = test1known.firstElementChild;
-      root.insertBefore(obj, root.firstChild);
+      const root = test1known.lastElementChild;
+      root.insertBefore(obj, root.firstElementChild);
     } else {
-      const root = test1learning.firstElementChild;
-      root.insertBefore(obj, root.firstChild);
+      const root = test1learning.lastElementChild;
+      root.insertBefore(obj, root.firstElementChild);
     }
     draggies = draggies.filter((d) => d != draggie);
     draggie.destroy();
@@ -527,8 +527,8 @@ function test1cleanup() {
   const test1known = document.getElementById("test1known");
   const test1learning = document.getElementById("test1learning");
   const test1noneed = document.getElementById("test1noneed");
-  const movedLemma = [...test1known.firstElementChild.children]
-    .concat([...test1learning.firstElementChild.children])
+  const movedLemma = [...test1known.lastElementChild.children]
+    .concat([...test1learning.lastElementChild.children])
     .concat([...test1noneed.children]);
   movedLemma.forEach((lemma) => {
     dragZone.appendChild(lemma);
