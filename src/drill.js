@@ -775,7 +775,7 @@ function test2select() {
     const isCorrect = test2countScore();
     test2score += isCorrect;
     correctAudio.play();
-    this.textContent = "○ " + this.textContent;
+    this.textContent = "⭕ " + this.textContent;
     const answerLemma = choices.find((c) => c.isAnswer).en;
     test2put(answerLemma, isCorrect);
     if (test2count > testLength) {
