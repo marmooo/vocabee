@@ -50,14 +50,14 @@
             Vocabee
           </a>
           <div class="navbar-nav">
-            <button title="ログイン中" id="signed" class="btn p-0 d-none">
+            <button title="ログイン中" id="signed" class="btn p-0 d-none" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
             </button>
-            <button title="音声を自動再生" id="voice" class="btn p-0 ms-1">
+            <button title="音声を自動再生" id="voice" class="btn p-0 ms-1" type="button">
               <svg id="voiceOn" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
               <svg id="voiceOff" class="d-none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16"><path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/></svg>
             </button>
-            <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0 ms-1">🌓</button>
+            <button title="ダークモード切替" id="toggleDarkMode" class="fs-4 btn p-0 ms-1" type="button">🌓</button>
           </div>
         </div>
       </nav>
@@ -86,7 +86,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
           </div>
           <div class="text-center">
             <h5>単語一覧
-              <button class="btn p-1" title="使い方のヒント"
+              <button class="btn p-1" title="使い方のヒント" type="button"
                 data-bs-toggle="collapse" data-bs-target="#usageBasic"
                 aria-expanded="false" aria-controls="usageBasic">💡</button>
             </h5>
@@ -99,19 +99,19 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
             </div>
             <div class="row pb-4">
               <div class="col">
-                <button id="knownButton" class="w-100 btn btn-secondary" disabled>
+                <button id="knownButton" class="w-100 btn btn-secondary" type="button" disabled>
                   知ってる
                   <span id="known" class="d-block notranslate">0</span>
                 </button>
               </div>
               <div class="col px-0">
-                <button id="unlearnedButton" class="w-100 btn btn-secondary" disabled>
+                <button id="unlearnedButton" class="w-100 btn btn-secondary" type="button" disabled>
                   未学習
                   <span id="unlearned" class="d-block notranslate">200</span>
                 </button>
               </div>
               <div class="col">
-                <button id="learningButton" class="w-100 btn btn-secondary" disabled>
+                <button id="learningButton" class="w-100 btn btn-secondary" type="button" disabled>
                   自信なし
                   <span id="learning" class="d-block notranslate">0</span>
                 </button>
@@ -121,7 +121,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
           <div class="row pt-4">
             <div class="col-sm pb-3">
               <h5>四択テスト
-                <button class="btn p-1" title="使い方のヒント"
+                <button class="btn p-1" title="使い方のヒント" type="button"
                   data-bs-toggle="collapse" data-bs-target="#usageTest"
                   aria-expanded="false" aria-controls="usageTest">💡</button>
               </h5>
@@ -143,13 +143,13 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
                 </div>
               </div>
               <div class="text-center py-3">
-                <button id="test2all" class="btn btn-primary btn-lg m-1">全範囲をテストする</button>
-                <button id="test2learning" class="btn btn-primary btn-lg m-1">自信なしをテストする</button>
+                <button id="test2all" class="btn btn-primary btn-lg m-1" type="button">全範囲をテストする</button>
+                <button id="test2learning" class="btn btn-primary btn-lg m-1" type="button">自信なしをテストする</button>
               </div>
             </div>
             <div class="col-sm">
               <h5>頻度別の理解度
-                <button class="btn p-1" title="使い方のヒント"
+                <button class="btn p-1" title="使い方のヒント" type="button"
                   data-bs-toggle="collapse" data-bs-target="#usageOrdered"
                   aria-expanded="false" aria-controls="usageOrdered">💡</button>
               </h5>
@@ -175,7 +175,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
         </div>
         <div id="test1panel" class="carousel-item">
           <div class="text-center">
-            <button class="btn moveTop">
+            <button class="btn moveTop" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             </button>
           </div>
@@ -187,29 +187,29 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
           </div>
           <div id="test1drag" class="alert alert-primary text-center d-flex px-2">
             <div id="dragZone">
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
-              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
+              <button class="btn btn-light btn-lg m-1 px-4 lemma notranslate" type="button"></button>
             </div>
             <div id="test1moveTop" class="m-auto text-center d-none">
-              <button class="btn btn-primary btn-lg">続ける</button>
+              <button class="btn btn-primary btn-lg" type="button">続ける</button>
             </div>
           </div>
           <div id="test1learning" class="alert alert-success">
@@ -221,54 +221,54 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
         </div>
         <div id="test2panel" class="carousel-item">
           <div class="text-center">
-            <button class="btn moveTop">
+            <button class="btn moveTop" type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             </button>
           </div>
           <div class="alert alert-dark p-5 text-center">
-            <h2><span id="test2lemma">lemma</span><button id="test2voice" class="btn">🔊</button></h2>
+            <h2><span id="test2lemma">lemma</span><button id="test2voice" class="btn" type="button">🔊</button></h2>
           </div>
           <div id="choices">
-            <button class="btn btn-lg btn-light my-2 w-100 border"></button>
-            <button class="btn btn-lg btn-light my-2 w-100 border"></button>
-            <button class="btn btn-lg btn-light my-2 w-100 border"></button>
-            <button class="btn btn-lg btn-light my-2 w-100 border"></button>
+            <button class="btn btn-lg btn-light my-2 w-100 border" type="button"></button>
+            <button class="btn btn-lg btn-light my-2 w-100 border" type="button"></button>
+            <button class="btn btn-lg btn-light my-2 w-100 border" type="button"></button>
+            <button class="btn btn-lg btn-light my-2 w-100 border" type="button"></button>
           </div>
         </div>
         <div id="test2summary" class="carousel-item">
           <div class="row">
             <div class="col-sm">
               <table id="test2table1" class="table table-striped">
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
               </table>
             </div>
             <div class="col-sm">
               <table id="test2table2" class="table table-striped">
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
-                <tr><td><button class="btn p-0"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
+                <tr><td><button class="btn p-0" type="button"></button></td><td></td><td></td></tr>
               </table>
             </div>
           </div>
           <div class="text-center py-3">
             <h2><span id="score"></span> / <span id="testLength"></span></h2>
-            <button id="test2moveTop" class="btn btn-primary btn-lg">もどる</button>
+            <button id="test2moveTop" class="btn btn-primary btn-lg" type="button">もどる</button>
           </div>
         </div>
       </div>
@@ -276,28 +276,28 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title"><span id="modal-title"></span><button id="modal-voice" class="btn">🔊</button></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title"><span id="modal-title"></span><button id="modal-voice" class="btn" type="button">🔊</button></h5>
+              <button class="btn-close" data-bs-dismiss="modal" aria-label="Close" type="button"></button>
             </div>
             <div id="modal-body" class="modal-body">
               <div id="meaning" class="pb-3"></div>
               <div class="pt-3">
                 <form id="cse-search-box-form-id" class="d-inline-block mb-1">
                   <input type="hidden" value="学校" id="cse-search-input-box-id">
-                  <button class="btn btn-light border btn-sm d-flex">Google 画像検索</button>
+                  <button class="btn btn-light border btn-sm d-flex" type="button">Google 画像検索</button>
                 </form>
-                <button id="searchGoogle" class="btn btn-light border btn-sm mb-1">Google 辞書</button>
-                <button id="searchEijiro" class="btn btn-light border btn-sm mb-1">英辞郎</button>
-                <button id="searchWeblio1" class="btn btn-light border btn-sm mb-1">Weblio</button>
-                <button id="searchWeblio2" class="btn btn-light border btn-sm mb-1">Weblio 例文</button>
-                <button id="searchReversoContext" class="btn btn-light border btn-sm mb-1">ReversoContext</button>
+                <button id="searchGoogle" class="btn btn-light border btn-sm mb-1" type="button">Google 辞書</button>
+                <button id="searchEijiro" class="btn btn-light border btn-sm mb-1" type="button">英辞郎</button>
+                <button id="searchWeblio1" class="btn btn-light border btn-sm mb-1" type="button">Weblio</button>
+                <button id="searchWeblio2" class="btn btn-light border btn-sm mb-1" type="button">Weblio 例文</button>
+                <button id="searchReversoContext" class="btn btn-light border btn-sm mb-1" type="button">ReversoContext</button>
               </div>
               <div class="gcse-searchresults-only"
                 data-defaultToImageSearch="true"
                 data-resultSetSize="small"></div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+              <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">閉じる</button>
             </div>
           </div>
         </div>
