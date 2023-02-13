@@ -1153,8 +1153,8 @@ document.getElementById("test2voice").onclick = function () {
   const text = this.previousElementSibling.textContent;
   loopVoice(text, 3);
 };
-document.getElementById("modal-voice").onclick = function (obj) {
-  const text = obj.previousElementSibling.textContent;
+document.getElementById("modal-voice").onclick = function (event) {
+  const text = event.target.previousElementSibling.textContent;
   loopVoice(text, 3);
 };
 test2getTrs().forEach((tr) => {
