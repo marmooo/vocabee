@@ -851,9 +851,9 @@ function countupStates() {
 
 function initProblemRange() {
   let from, to;
-  const queries = parseQuery(location.search);
-  if ("q" in queries) {
-    [from, to] = queries["q"].split("-");
+  const query = new URLSearchParams(location.search);
+  if (query.has("q")) {
+    [from, to] = query.get("q").split("-");
     from = parseInt(from);
     to = parseInt(to);
     level = to;
@@ -1130,17 +1130,6 @@ function addSheet(spreadsheetId, title, callback) {
   }).catch((err) => {
     console.log(err);
   });
-}
-
-function parseQuery(queryString) {
-  const query = {};
-  const pairs = (queryString[0] === "?" ? queryString.substr(1) : queryString)
-    .split("&");
-  for (let i = 0; i < pairs.length; i++) {
-    const pair = pairs[i].split("=");
-    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || "");
-  }
-  return query;
 }
 
 document.getElementById("voice").onclick = toggleVoice;
