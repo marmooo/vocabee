@@ -17,9 +17,11 @@ loadVoices();
 let pendingPush;
 let testLength = 20;
 const maxTestLength = 20; // 多すぎると復習しにくい
-const correctAudio = new Audio("/vocabee/mp3/correct3.mp3");
-const incorrectAudio = new Audio("/vocabee/mp3/incorrect1.mp3");
 loadConfig();
+const audioContext = new AudioContext();
+const audioBufferCache = {};
+loadAudio("correct", "/vocabee/mp3/correct3.mp3");
+loadAudio("incorrect", "/vocabee/mp3/incorrect1.mp3");
 initFromIndexedDB();
 const carousel = new bootstrap.Carousel(document.getElementById("main"), {
   interval: false,
@@ -46,6 +48,35 @@ function toggleDarkMode() {
     localStorage.setItem("darkMode", 1);
     document.documentElement.dataset.theme = "dark";
   }
+}
+
+async function playAudio(name, volume) {
+  const audioBuffer = await loadAudio(name, audioBufferCache[name]);
+  const sourceNode = audioContext.createBufferSource();
+  sourceNode.buffer = audioBuffer;
+  if (volume) {
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = volume;
+    gainNode.connect(audioContext.destination);
+    sourceNode.connect(gainNode);
+    sourceNode.start();
+  } else {
+    sourceNode.connect(audioContext.destination);
+    sourceNode.start();
+  }
+}
+
+async function loadAudio(name, url) {
+  if (audioBufferCache[name]) return audioBufferCache[name];
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+  audioBufferCache[name] = audioBuffer;
+  return audioBuffer;
+}
+
+function unlockAudio() {
+  audioContext.resume();
 }
 
 function toggleVoice() {
@@ -798,16 +829,16 @@ function test2put(lemma, isCorrect) {
   });
 }
 
-function test2select() {
+function test2select(event) {
   const buttons = [...document.getElementById("choices").children];
   const choices = test2problems[test2count - 1];
   const eiwa = document.getElementById("testType1").checked;
-  if (this.dataset.answer) {
+  if (event.target.dataset.answer) {
     test2count += 1;
     const isCorrect = test2countScore();
     test2score += isCorrect;
-    correctAudio.play();
-    this.textContent = "⭕ " + this.textContent;
+    playAudio("correct");
+    event.target.textContent = "⭕ " + event.target.textContent;
     const answerLemma = choices.find((c) => c.isAnswer).en;
     test2put(answerLemma, isCorrect);
     if (test2count > testLength) {
@@ -821,11 +852,11 @@ function test2select() {
     }
   } else {
     speechSynthesis.cancel();
-    incorrectAudio.play();
-    const pos = buttons.findIndex((btn) => btn == this);
+    playAudio("incorrect");
+    const pos = buttons.findIndex((btn) => btn == event.target);
     const choice = choices[pos];
-    this.textContent = choice.en + ": " + choice.ja;
-    this.classList.add("text-danger");
+    event.target.textContent = choice.en + ": " + choice.ja;
+    event.target.classList.add("text-danger");
     const results = test2getTrs();
     results[test2count - 1].classList.add("table-danger");
   }
@@ -1184,4 +1215,8 @@ test2getTrs().forEach((tr) => {
   button.onclick = function () {
     loopVoice(tds[1].textContent, 1);
   };
+});
+document.addEventListener("click", unlockAudio, {
+  once: true,
+  useCapture: true,
 });
