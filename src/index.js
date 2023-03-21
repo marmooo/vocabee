@@ -36,8 +36,8 @@ function init() {
   });
 }
 
-function updateSpreadsheetId() {
-  const spreadsheetId = this.value;
+function updateSpreadsheetId(event) {
+  const spreadsheetId = event.target.value;
   localStorage.setItem("vocabee.spreadsheetId", spreadsheetId);
   loadPlansOrCreate();
 }

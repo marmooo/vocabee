@@ -457,8 +457,8 @@ function searchByGoogle(event) {
 }
 document.getElementById("cse-search-box-form-id").onsubmit = searchByGoogle;
 
-function search() {
-  const name = this.id.slice(6);
+function search(event) {
+  const name = event.target.id.slice(6);
   const lemma = document.getElementById("modal-title").textContent;
   switch (name) {
     case "Google":
@@ -750,9 +750,10 @@ function test2learning() {
   test2base("learning");
 }
 
-function test2seq() {
+function test2seq(event) {
   const progresses = [...document.getElementById("seqTest").children];
-  const progressPos = progresses.findIndex((progress) => progress == this);
+  const progressPos = progresses
+    .findIndex((progress) => progress == event.target);
   test2base("seq", progressPos);
 }
 
@@ -1201,8 +1202,8 @@ modalNode.addEventListener("shown.bs.modal", function () {
     loopVoice(en, 3);
   }
 });
-document.getElementById("test2voice").onclick = function () {
-  const text = this.previousElementSibling.textContent;
+document.getElementById("test2voice").onclick = (event) => {
+  const text = event.target.previousElementSibling.textContent;
   loopVoice(text, 3);
 };
 document.getElementById("modal-voice").onclick = function (event) {
