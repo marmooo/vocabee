@@ -1167,6 +1167,7 @@ function addSheet(spreadsheetId, title, callback) {
 document.getElementById("voice").onclick = toggleVoice;
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("test1moveTop").onclick = test1moveTop;
+document.getElementById("searchByGoogle").onclick = searchByGoogle;
 document.getElementById("searchGoogle").onclick = search;
 document.getElementById("searchEijiro").onclick = search;
 document.getElementById("searchWeblio1").onclick = search;
