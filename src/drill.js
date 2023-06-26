@@ -447,7 +447,7 @@ function test1moveTop() {
 function searchByGoogle(event) {
   event.preventDefault();
   const input = document.getElementById("cse-search-input-box-id");
-  document.getElementById("___gcse_0").classList.remove("d-none");
+  document.getElementById("searchResults").classList.remove("d-none");
   const element = google.search.cse.element.getElement("searchresults-only0");
   if (input.value == "") {
     element.clearAllResults();
@@ -1198,7 +1198,7 @@ modalNode.addEventListener("shown.bs.modal", function () {
   const obj = document.getElementById("modal-voice");
   const en = obj.previousElementSibling.textContent;
   document.getElementById("cse-search-input-box-id").value = en;
-  document.getElementById("___gcse_0").classList.add("d-none");
+  document.getElementById("searchResults").classList.add("d-none");
   if (localStorage.getItem("voice") != 0) {
     loopVoice(en, 3);
   }

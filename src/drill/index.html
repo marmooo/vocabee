@@ -37,6 +37,8 @@
       #test1drag, #test1known, #test1learning { height:10rem; }
       progress { cursor:pointer; }
       html[data-bs-theme="dark"] .navbar-brand > img { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] #searchResults { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] #searchResults img { filter: invert(1) hue-rotate(180deg); }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" media="print" onload="this.media='all'">
   </head>
@@ -291,9 +293,11 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
                 <button id="searchWeblio2" class="btn btn-light border btn-sm mb-1" type="button">Weblio 例文</button>
                 <button id="searchReversoContext" class="btn btn-light border btn-sm mb-1" type="button">ReversoContext</button>
               </div>
-              <div class="gcse-searchresults-only"
-                data-defaultToImageSearch="true"
-                data-resultSetSize="small"></div>
+              <div id="searchResults" class="d-none">
+                <div class="gcse-searchresults-only"
+                  data-defaultToImageSearch="true"
+                  data-resultSetSize="small"></div>
+              </div>
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">閉じる</button>
