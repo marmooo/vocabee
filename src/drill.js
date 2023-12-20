@@ -838,7 +838,7 @@ function test2select(event) {
     test2count += 1;
     const isCorrect = test2countScore();
     test2score += isCorrect;
-    playAudio("correct");
+    playAudio("correct", 0.3);
     event.target.textContent = "⭕ " + event.target.textContent;
     const answerLemma = choices.find((c) => c.isAnswer).en;
     test2put(answerLemma, isCorrect);
@@ -853,7 +853,7 @@ function test2select(event) {
     }
   } else {
     speechSynthesis.cancel();
-    playAudio("incorrect");
+    playAudio("incorrect", 0.3);
     const pos = buttons.findIndex((btn) => btn == event.target);
     const choice = choices[pos];
     event.target.textContent = choice.en + ": " + choice.ja;
