@@ -470,6 +470,9 @@ function search(event) {
     case "Weblio1":
       window.open(`https://ejje.weblio.jp/content/${lemma}`);
       return;
+    case "DbmxNet":
+      window.open(`https://dbmx.net/dict/search_union.cgi?q=${lemma}`);
+      return;
     case "Weblio2":
       window.open(`https://ejje.weblio.jp/sentence/content/${lemma}`);
       return;
@@ -1172,6 +1175,7 @@ document.getElementById("searchGoogle").onclick = search;
 document.getElementById("searchEijiro").onclick = search;
 document.getElementById("searchWeblio1").onclick = search;
 document.getElementById("searchWeblio2").onclick = search;
+document.getElementById("searchDbmxNet").onclick = search;
 document.getElementById("searchReversoContext").onclick = search;
 document.getElementById("knownButton").onclick = function () {
   test1("known");
