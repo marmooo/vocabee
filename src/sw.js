@@ -1,4 +1,4 @@
-const CACHE_NAME = "2024-01-22 10:01";
+const CACHE_NAME = "2024-02-25 09:42";
 const urlsToCache = [
   "/vocabee/",
   "/vocabee/index.js",
@@ -7,7 +7,7 @@ const urlsToCache = [
   "/vocabee/mp3/incorrect1.mp3",
   "/vocabee/mp3/correct3.mp3",
   "/vocabee/favicon/favicon.svg",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
   "https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css",
   "https://cdn.jsdelivr.net/npm/draggabilly@3.0.0/dist/draggabilly.pkgd.min.js",
 ];
