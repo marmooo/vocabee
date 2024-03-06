@@ -18,7 +18,7 @@ let pendingPush;
 let testLength = 20;
 const maxTestLength = 20; // 多すぎると復習しにくい
 loadConfig();
-const audioContext = new AudioContext();
+const audioContext = new globalThis.AudioContext();
 const audioBufferCache = {};
 loadAudio("correct", "/vocabee/mp3/correct3.mp3");
 loadAudio("incorrect", "/vocabee/mp3/incorrect1.mp3");
@@ -151,7 +151,7 @@ function loadVoices() {
 
 function loopVoice(text, n) {
   speechSynthesis.cancel();
-  const msg = new SpeechSynthesisUtterance(text);
+  const msg = new globalThis.SpeechSynthesisUtterance(text);
   msg.voice = englishVoices[Math.floor(Math.random() * englishVoices.length)];
   msg.lang = "en-US";
   for (let i = 0; i < n; i++) {
@@ -462,22 +462,22 @@ function search(event) {
   const lemma = document.getElementById("modal-title").textContent;
   switch (name) {
     case "Google":
-      window.open(`https://www.google.com/search?q=${lemma}+意味`);
+      globalThis.open(`https://www.google.com/search?q=${lemma}+意味`);
       return;
     case "Eijiro":
-      window.open(`https://eow.alc.co.jp/search?q=${lemma}`);
+      globalThis.open(`https://eow.alc.co.jp/search?q=${lemma}`);
       return;
     case "Weblio1":
-      window.open(`https://ejje.weblio.jp/content/${lemma}`);
+      globalThis.open(`https://ejje.weblio.jp/content/${lemma}`);
       return;
     case "DBMxNet":
-      window.open(`https://dbmx.net/dict/search_union.cgi?q=${lemma}`);
+      globalThis.open(`https://dbmx.net/dict/search_union.cgi?q=${lemma}`);
       return;
     case "Weblio2":
-      window.open(`https://ejje.weblio.jp/sentence/content/${lemma}`);
+      globalThis.open(`https://ejje.weblio.jp/sentence/content/${lemma}`);
       return;
     case "ReversoContext":
-      window.open(`https://context.reverso.net/翻訳/英語-日本語/${lemma}`);
+      globalThis.open(`https://context.reverso.net/翻訳/英語-日本語/${lemma}`);
       return;
   }
 }
