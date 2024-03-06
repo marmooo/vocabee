@@ -94,13 +94,13 @@ function toggleVoice() {
 
 function loadVoices() {
   // https://stackoverflow.com/questions/21513706/
-  const allVoicesObtained = new Promise(function (resolve) {
+  const allVoicesObtained = new Promise((resolve) => {
     let voices = speechSynthesis.getVoices();
     if (voices.length !== 0) {
       resolve(voices);
     } else {
       let supported = false;
-      speechSynthesis.addEventListener("voiceschanged", function () {
+      speechSynthesis.addEventListener("voiceschanged", () => {
         supported = true;
         voices = speechSynthesis.getVoices();
         resolve(voices);
@@ -491,20 +491,19 @@ function addDragEvent(obj, meaning, reset) {
     obj.textContent = meaning[0];
     obj.classList.add("btn-lg");
   }
-  draggie.on("staticClick", function () {
-    document.getElementById("meaning").textContent = meaning[1].split("|").join(
-      ", ",
-    );
+  draggie.on("staticClick", () => {
+    document.getElementById("meaning").textContent = meaning[1]
+      .split("|").join(", ");
     document.getElementById("modal-title").textContent = meaning[0];
     modal.toggle("toggle");
   });
-  draggie.on("dragStart", function (_event, _pointer) {
+  draggie.on("dragStart", (_event, _pointer) => {
     const rect1 = obj.getBoundingClientRect();
     document.body.appendChild(obj);
     const rect2 = obj.getBoundingClientRect();
     draggie.setPosition(rect1.left - rect2.left, rect1.top - rect2.top);
   });
-  draggie.on("dragEnd", function (_event, _pointer) {
+  draggie.on("dragEnd", (_event, _pointer) => {
     obj.removeAttribute("style");
     obj.classList.remove("btn-lg");
     if (draggie.position.y < 0) {
@@ -1023,7 +1022,7 @@ let reloadedTime, reloadCheckedTime;
 function setAutoReload() {
   reloadedTime = Date.now();
   reloadCheckedTime = Date.now();
-  setInterval(function () {
+  setInterval(() => {
     const currTime = Date.now();
     // リロードチェック
     if (reloadedTime + 3300000 < currTime) { // 55分に1回 token 更新
@@ -1177,13 +1176,13 @@ document.getElementById("searchWeblio1").onclick = search;
 document.getElementById("searchWeblio2").onclick = search;
 document.getElementById("searchDBMxNet").onclick = search;
 document.getElementById("searchReversoContext").onclick = search;
-document.getElementById("knownButton").onclick = function () {
+document.getElementById("knownButton").onclick = () => {
   test1("known");
 };
-document.getElementById("unlearnedButton").onclick = function () {
+document.getElementById("unlearnedButton").onclick = () => {
   test1("unlearned");
 };
-document.getElementById("learningButton").onclick = function () {
+document.getElementById("learningButton").onclick = () => {
   test1("learning");
 };
 document.getElementById("test2moveTop").onclick = test2moveTop;
@@ -1198,7 +1197,7 @@ document.getElementById("test2learning").onclick = test2learning;
 [...document.getElementById("seqTest").children].forEach((progress) => {
   progress.onclick = test2seq;
 });
-modalNode.addEventListener("shown.bs.modal", function () {
+modalNode.addEventListener("shown.bs.modal", () => {
   const obj = document.getElementById("modal-voice");
   const en = obj.previousElementSibling.textContent;
   document.getElementById("cse-search-input-box-id").value = en;
@@ -1211,14 +1210,14 @@ document.getElementById("test2voice").onclick = (event) => {
   const text = event.target.previousElementSibling.textContent;
   loopVoice(text, 3);
 };
-document.getElementById("modal-voice").onclick = function (event) {
+document.getElementById("modal-voice").onclick = (event) => {
   const text = event.target.previousElementSibling.textContent;
   loopVoice(text, 3);
 };
 test2getTrs().forEach((tr) => {
   const tds = tr.children;
   const button = tds[0].firstChild;
-  button.onclick = function () {
+  button.onclick = () => {
     loopVoice(tds[1].textContent, 1);
   };
 });
