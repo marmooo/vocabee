@@ -492,7 +492,7 @@ function addDragEvent(obj, meaning, reset) {
     document.getElementById("meaning").textContent = meaning[1]
       .split("|").join(", ");
     document.getElementById("modal-title").textContent = meaning[0];
-    modal.toggle("toggle");
+    modal.show();
   });
   draggie.on("dragStart", (_event, _pointer) => {
     const rect1 = obj.getBoundingClientRect();
