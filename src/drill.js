@@ -416,11 +416,6 @@ function updateViewByLearning() {
 }
 
 function test1moveTop() {
-  draggies.forEach((draggie) => {
-    draggie.destroy();
-  });
-  draggies = [];
-
   switch (test1method) {
     case "known": {
       updateViewByKnown();
@@ -586,6 +581,10 @@ function setUnlearnedProblems() {
 
 function moveTop() {
   carousel.to(0);
+  draggies.forEach((draggie) => {
+    draggie.destroy();
+  });
+  draggies = [];
 }
 
 function test1cleanup() {
