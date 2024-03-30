@@ -1,4 +1,7 @@
-import { Carousel, Modal } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/+esm";
+import {
+  Carousel,
+  Modal,
+} from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/+esm";
 
 const CLIENT_ID =
   "945330460050-osmelc2uen8vhdesa6kd55vvjivkm5vs.apps.googleusercontent.com";
