@@ -1,3 +1,5 @@
+import { Carousel, Modal } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/+esm";
+
 const CLIENT_ID =
   "945330460050-osmelc2uen8vhdesa6kd55vvjivkm5vs.apps.googleusercontent.com";
 const API_KEY = "AIzaSyD_EbPMAwZ9EDHiLHqGToi7-31ZnwXHams";
@@ -23,12 +25,12 @@ const audioBufferCache = {};
 loadAudio("correct", "/vocabee/mp3/correct3.mp3");
 loadAudio("incorrect", "/vocabee/mp3/incorrect1.mp3");
 initFromIndexedDB();
-const carousel = new bootstrap.Carousel(document.getElementById("main"), {
+const carousel = new Carousel(document.getElementById("main"), {
   interval: false,
   touch: false,
 });
 const modalNode = document.getElementById("modal");
-const modal = new bootstrap.Modal(modalNode);
+const modal = new Modal(modalNode);
 
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
