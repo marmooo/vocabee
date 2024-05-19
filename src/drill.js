@@ -195,6 +195,16 @@ function setLearningButton(id, value) {
   }
 }
 
+function setTest2LearningButton() {
+  const test2learning = document.getElementById("test2learning");
+  const learning = document.getElementById("learning").textContent;
+  if (learning == 0) {
+    test2learning.setAttribute("disabled", true);
+  } else {
+    test2learning.removeAttribute("disabled");
+  }
+}
+
 function loadEnjaListFromIndexedDB(level, callback) {
   openDB((db) => {
     const dict = {};
@@ -233,6 +243,7 @@ function loadPlans(state) {
   setLearningButton("known", known);
   setLearningButton("unlearned", unlearned);
   setLearningButton("learning", learning);
+  setTest2LearningButton();
 }
 
 function loadProgresses(states) {
@@ -790,6 +801,7 @@ function test2base(type, progressPos) {
     result.classList.remove("table-danger");
   });
   test2problems = test2generateProblems(type, progressPos);
+  if (test2problems.length == 0) return;
   test2count = 1;
   test2score = 0;
   const buttons = [...document.getElementById("choices").children];
