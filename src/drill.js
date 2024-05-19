@@ -466,7 +466,7 @@ function test1moveTop() {
       break;
     }
   }
-  if (navigator.onLine) {
+  if (navigator.onLine && gapi.client) {
     pushWords();
     pushIndex();
   } else {
@@ -823,7 +823,7 @@ function test2countScore() {
 }
 
 function test2moveTop() {
-  if (navigator.onLine) {
+  if (navigator.onLine && gapi.client) {
     pushWords();
     pushIndex();
   } else {
@@ -1073,7 +1073,7 @@ function setAutoReload() {
       reloadCheckedTime = Date.now();
     }
     // offline で put できなかったデータがあれば sheet に push
-    if (navigator.onLine) {
+    if (navigator.onLine && gapi.client) {
       document.getElementById("signed").classList.remove("d-none");
       if (pendingPush) {
         pushWords();
