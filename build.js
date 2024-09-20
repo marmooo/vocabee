@@ -1,4 +1,4 @@
-import { readLines } from "https://deno.land/std/io/mod.ts";
+import { TextLineStream } from "jsr:@std/streams/text-line-stream";
 
 async function generateProblems() {
   const levelArray = [
@@ -21,8 +21,11 @@ async function generateProblems() {
   let i = 0;
   let count = 0;
   let data = [];
-  const fileReader = await Deno.open("mGSL/dist/mGSL.lst");
-  for await (const line of readLines(fileReader)) {
+  const file = await Deno.open("mGSL/dist/mGSL.lst");
+  const lineStream = file.readable
+    .pipeThrough(new TextDecoderStream())
+    .pipeThrough(new TextLineStream());
+  for await (const line of lineStream) {
     count += 1;
     data.push(line.split("\t", 2).join("\t"));
     if (levelArray[i] == count) {
