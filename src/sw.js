@@ -1,4 +1,4 @@
-const CACHE_NAME = "2024-05-19 17:30";
+const CACHE_NAME = "2024-10-25 11:00";
 const urlsToCache = [
   "/vocabee/",
   "/vocabee/index.js",
