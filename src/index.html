@@ -12,7 +12,6 @@
     <meta property="og:url" content="https://marmooo.github.io/vocabee/">
     <meta property="og:image" content="https://marmooo.github.io/vocabee/favicon/apple-touch-icon.png">
     <meta name="twitter:card" content="summary">
-    <meta name="google-signin-client_id" content="945330460050-osmelc2uen8vhdesa6kd55vvjivkm5vs.apps.googleusercontent.com">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F2179JXDYY"></script>
     <script>
@@ -64,9 +63,6 @@
           JavaScript を ON にしてください。
         </div>
       </noscript>
-      <div id="spreadsheetIdError" class="alert alert-danger d-none">
-        スプレッドシートID が間違っているか、存在しません。
-      </div>
       <div class="row pt-3">
         <div class="col-sm pb-4">
           <div>
@@ -90,46 +86,25 @@
               </tbody>
             </table>
           </div>
-          <div class="py-4">
-            <h5>おすすめの学習方法</h5>
-            <ol>
-              <li>自分に合ったレベルから始める</li>
-              <li>単語を分類しながら覚える</li>
-              <li>覚えてきたら4択テスト</li>
-              <li>くり返す</li>
-            </ol>
-          </div>
         </div>
         <div class="col-sm">
-          <h5>サービス利用のヒント</h5>
+          <h5>学習データについて</h5>
           <div>
-            <p>学習状況を Google Spreadsheets に保存すると、様々な端末で学習できます。
-            学習状況を保存したい <a href="https://developers.google.com/sheets/api/guides/concepts">スプレッドシートID</a> を入力し、Google アカウントでログインしてください。
-            初回ログイン時の <a href="https://developers.google.com/sheets/api/guides/concepts">スプレッドシートID</a> は未入力で大丈夫です。ドキュメントを新しく作成します。
+            <p>学習データは端末上の IndexedDB に保存されるので安全です。
+            また学習データはいつでも CSV 形式でインポート/エクスポートできます。
             </p>
           </div>
-          <div class="text-center">
-            <div class="form-inline">
-              <div class="input-group mx-auto">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">スプレッドシートID</span>
-                </div>
-                <input id="spreadsheetId" type="text" class="form-control text-center" placeholder="スプレッドシートID">
-              </div>
-            </div>
-            <div id="authorize" class="pt-3" style="display: none;">
-              <div id="authorize_button" class="d-inline-block"></div>
-              <p class="text-muted"><a href="/terms/">利用規約</a> に同意した上でご利用ください。</p>
-            </div>
-            <button id="signout_button" class="btn btn-primary mt-3" style="display: none;">サインアウト</button>
-            <pre id="content" style="white-space: pre-wrap;"></pre>
-          </div>
-          <div class="pt-4">
-            <p>学習は好きな場所から開始できますが、少し簡単めのところからのほうが良いです。
-            また小学生は必須英単語より周辺語が重要となります。
-            小学生向けの様々な英語アプリを用意していますので、<a href="/">ぜひご利用ください</a>。
-            </p>
-          </div>
+          <h5>おすすめの学習方法</h5>
+          <ol>
+            <li>自分に合ったレベルから始める</li>
+            <li>単語を分類しながら覚える</li>
+            <li>覚えてきたら4択テスト</li>
+            <li>くり返す</li>
+          </ol>
+          <p>学習は好きな場所から開始できますが、少し簡単めのところからのほうが良いです。
+          また小学生は必須英単語より周辺語が重要となります。
+          小学生向けの様々な英語アプリを用意していますので、<a href="/">ぜひご利用ください</a>。
+          </p>
         </div>
       </div>
       <template id="plan-box">
@@ -145,7 +120,5 @@
       <div class="text-muted">&copy; <a href="https://github.com/marmooo">marmooo</a></div>
     </footer>
     <script src="index.js"></script>
-    <script async defer src="https://apis.google.com/js/platform.js?onload=_renderButton"></script>
-    <script async defer src="https://apis.google.com/js/api.js?onload=_handleClientLoad"></script>
   </body>
 </html>

@@ -3,13 +3,6 @@ import {
   Modal,
 } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/+esm";
 
-const CLIENT_ID =
-  "945330460050-osmelc2uen8vhdesa6kd55vvjivkm5vs.apps.googleusercontent.com";
-const API_KEY = "AIzaSyD_EbPMAwZ9EDHiLHqGToi7-31ZnwXHams";
-const DISCOVERY_DOCS = [
-  "https://sheets.googleapis.com/$discovery/rest?version=v4",
-];
-const SCOPES = "https://www.googleapis.com/auth/drive.file";
 let level;
 let enjaList = [];
 let draggies = [];
@@ -18,7 +11,6 @@ let test2count = 0;
 let test2score = 0;
 let test2problems = [];
 let englishVoices = [];
-let pendingPush;
 let testLength = 20;
 let audioContext;
 const audioBufferCache = {};
@@ -943,31 +935,6 @@ function initFromIndexedDB() {
   });
 }
 
-function _handleClientLoad() {
-  gapi.load("client:auth2", initClient);
-}
-
-function initClient() {
-  gapi.client.init({
-    apiKey: API_KEY,
-    clientId: CLIENT_ID,
-    discoveryDocs: DISCOVERY_DOCS,
-    scope: SCOPES,
-  }).then((_response) => {
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-  }).catch((err) => {
-    console.log(err);
-  });
-}
-
-function updateSigninStatus(isSignedIn) {
-  if (isSignedIn) {
-    initSheet();
-    document.getElementById("signed").classList.remove("d-none");
-  }
-}
-
 // function resetPlan(clearedLevel) {
 //   const progresses = document.getElementById("progresses");
 //   const trElements = progresses.getElementsByTagName("tr");
@@ -1041,164 +1008,6 @@ function getAward(level) {
 //   award.textContent = getAward(to);
 //   return planBox;
 // }
-
-function initFromSheet(range) {
-  loadEnjaListFromSheet(range, async () => {
-    const [planStates, progressStates] = countupStates();
-    loadPlans(planStates);
-    loadProgresses(progressStates);
-    await putWords();
-  });
-  setAutoReload();
-}
-
-let reloadedTime, reloadCheckedTime;
-function setAutoReload() {
-  reloadedTime = Date.now();
-  reloadCheckedTime = Date.now();
-  setInterval(() => {
-    const currTime = Date.now();
-    // リロードチェック
-    if (reloadedTime + 3300000 < currTime) { // 55分に1回 token 更新
-      if (reloadCheckedTime + 3300000) { // 55分以上のスリープはページ更新
-        location.reload();
-      } else {
-        gapi.auth2.getAuthInstance().currentUser.get().reloadAuthResponse();
-        reloadedTime = Date.now();
-      }
-    } else {
-      reloadCheckedTime = Date.now();
-    }
-    // offline で put できなかったデータがあれば sheet に push
-    if (navigator.onLine && gapi.client) {
-      document.getElementById("signed").classList.remove("d-none");
-      if (pendingPush) {
-        pushWords();
-        pushIndex();
-      }
-    } else {
-      document.getElementById("signed").classList.add("d-none");
-    }
-  }, 1000); // 1秒に1回チェック
-}
-
-function loadEnjaListFromSheet(range, callback) {
-  const dict = {};
-  if (range.values) {
-    for (let i = 0; i < range.values.length; i++) {
-      const row = range.values[i];
-      const lemma = row[0];
-      const state = row[1];
-      dict[lemma] = state;
-    }
-  }
-  return fetch("/vocabee/data/" + level + ".tsv")
-    .then((response) => response.text())
-    .then((text) => {
-      enjaList = [];
-      text.split("\n").forEach((line) => {
-        const [en, ja] = line.split("\t");
-        enjaList.push([en, ja, dict[en]]);
-      });
-      callback();
-    });
-}
-
-function getSheetPos(level) {
-  switch (true) {
-    case level <= 1600:
-      return level / 200;
-    case level <= 2600:
-      return (level - 1800) / 400 + 9;
-    default:
-      return (level - 3000) / 1000 + 12;
-  }
-}
-
-function pushIndex() {
-  const spreadsheetId = localStorage.getItem("vocabee.spreadsheetId");
-  const indexPos = getSheetPos(level);
-  let known = 0;
-  enjaList.forEach((enja) => {
-    if (enja[2] && enja[2].slice(-1) == "o") {
-      known += 1;
-    }
-  });
-  gapi.client.sheets.spreadsheets.values.update({
-    spreadsheetId: spreadsheetId,
-    range: `index!A${indexPos}`,
-    valueInputOption: "RAW",
-    values: [[level, known]],
-  }).then((_response) => {
-    // TODO: should be localStorage?
-    // TODO: タイミング次第で pushWords と競合
-    pendingPush = false;
-  }).catch((_err) => {
-    pendingPush = true;
-  });
-}
-
-function pushWords() {
-  const spreadsheetId = localStorage.getItem("vocabee.spreadsheetId");
-  const from = document.getElementById("levelFrom").textContent;
-  const to = document.getElementById("levelTo").textContent;
-  const values = enjaList.map((enja) => [enja[0], enja[2]]);
-  gapi.client.sheets.spreadsheets.values.update({
-    spreadsheetId: spreadsheetId,
-    range: `words!A${from}:B${to}`,
-    valueInputOption: "RAW",
-    values: values,
-  }).then((_response) => {
-    // TODO: should be localStorage?
-    // TODO: タイミング次第で pushWords と競合
-    pendingPush = false;
-  }).catch((_err) => {
-    pendingPush = true;
-  });
-}
-
-function initSheet() {
-  // sheet は遅いので先に読み込んで、その後 sheet の内容をマージする
-  const spreadsheetId = localStorage.getItem("vocabee.spreadsheetId");
-  const [from, to] = initProblemRange();
-  if (spreadsheetId) {
-    gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: spreadsheetId,
-      range: `words!A${from}:B${to}`,
-    }).then((response) => {
-      document.getElementById("spreadsheetIdError").classList.add("d-none");
-      return initFromSheet(response.result);
-    }).catch((err) => {
-      switch (err.status) {
-        case 400:
-          addSheet(spreadsheetId, "words");
-          break;
-        case 404:
-          document.getElementById("spreadsheetIdError").classList.remove(
-            "d-none",
-          );
-          break;
-        default:
-          console.log(err);
-      }
-    });
-  }
-}
-
-function addSheet(spreadsheetId, title, callback) {
-  return gapi.client.sheets.spreadsheets.batchUpdate(
-    { spreadsheetId: spreadsheetId },
-    {
-      requests: [
-        { addSheet: { properties: { title: title } } },
-      ],
-    },
-  ).then((_reponse) => {
-    if (callback) callback(response);
-  }).catch((err) => {
-    console.log(err);
-  });
-}
 
 document.getElementById("voice").onclick = toggleVoice;
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;

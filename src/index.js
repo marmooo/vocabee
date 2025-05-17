@@ -1,15 +1,3 @@
-const CLIENT_ID =
-  "945330460050-osmelc2uen8vhdesa6kd55vvjivkm5vs.apps.googleusercontent.com";
-const API_KEY = "AIzaSyD_EbPMAwZ9EDHiLHqGToi7-31ZnwXHams";
-const DISCOVERY_DOCS = [
-  "https://sheets.googleapis.com/$discovery/rest?version=v4",
-];
-const SCOPES = "https://www.googleapis.com/auth/drive.file";
-const authorizeParts = document.getElementById("authorize");
-const authorizeButton = document.getElementById("authorize_button");
-const signoutButton = document.getElementById("signout_button");
-loadConfig();
-
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
     document.documentElement.setAttribute("data-bs-theme", "dark");
@@ -27,10 +15,6 @@ function toggleDarkMode() {
 }
 
 function init() {
-  const spreadsheetId = localStorage.getItem("vocabee.spreadsheetId");
-  if (spreadsheetId) {
-    document.getElementById("spreadsheetId").value = spreadsheetId;
-  }
   loadPlansFromIndexedDB((clearedLevel) => {
     updatePlan(clearedLevel);
   });
@@ -40,57 +24,6 @@ function updateSpreadsheetId(event) {
   const spreadsheetId = event.target.value;
   localStorage.setItem("vocabee.spreadsheetId", spreadsheetId);
   loadPlansOrCreate();
-}
-
-function _handleClientLoad() {
-  gapi.load("client:auth2", initClient);
-}
-
-function initClient() {
-  gapi.client.init({
-    apiKey: API_KEY,
-    clientId: CLIENT_ID,
-    discoveryDocs: DISCOVERY_DOCS,
-    scope: SCOPES,
-  }).then((_response) => {
-    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    authorizeButton.onclick = handleAuthClick;
-    signoutButton.onclick = handleSignoutClick;
-  }).catch((err) => {
-    console.log(err);
-  });
-}
-
-function updateSigninStatus(isSignedIn) {
-  if (isSignedIn) {
-    authorizeParts.style.display = "none";
-    signoutButton.style.display = "inline-block";
-    document.getElementById("signed").classList.remove("d-none");
-    loadPlansOrCreate();
-  } else {
-    loadPlansFromIndexedDB((clearedLevel) => {
-      updatePlan(clearedLevel);
-    });
-    authorizeParts.style.display = "inline-block";
-    signoutButton.style.display = "none";
-  }
-}
-
-function _renderButton() {
-  gapi.signin2.render("authorize_button", {
-    scope: "profile email",
-    longtitle: true,
-    theme: "dark",
-  });
-}
-
-function handleAuthClick(_event) {
-  gapi.auth2.getAuthInstance().signIn();
-}
-
-function handleSignoutClick(_event) {
-  gapi.auth2.getAuthInstance().signOut();
 }
 
 customElements.define(
@@ -105,23 +38,6 @@ customElements.define(
     }
   },
 );
-
-function createSpreadsheet() {
-  const request = gapi.client.sheets.spreadsheets.create({}, {
-    properties: { title: "Vocabee" },
-    sheets: [
-      { properties: { title: "index" } },
-      { properties: { title: "words" } },
-    ],
-  });
-  request.then((response) => {
-    const spreadsheetId = response.result.spreadsheetId;
-    document.getElementById("spreadsheetId").value = spreadsheetId;
-    localStorage.setItem("vocabee.spreadsheetId", spreadsheetId);
-  }, function (reason) {
-    console.error("error: " + reason.result.error.message);
-  });
-}
 
 function getPlanRange(level) {
   switch (true) {
@@ -197,7 +113,6 @@ function updatePlan(clearedLevel) {
   }
 }
 
-// TODO: deno lint
 function getAward(_level) {
   switch (true) {
     case _level = 200:
@@ -395,6 +310,7 @@ function addSheet(spreadsheetId, title, callback) {
   });
 }
 
+loadConfig();
 init();
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
