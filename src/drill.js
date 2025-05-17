@@ -456,12 +456,6 @@ async function test1moveTop() {
       break;
     }
   }
-  if (navigator.onLine && gapi.client) {
-    pushWords();
-    pushIndex();
-  } else {
-    pendingPush = true;
-  }
   await putIndex();
   moveTop();
 }
@@ -813,12 +807,6 @@ function test2countScore() {
 }
 
 function test2moveTop() {
-  if (navigator.onLine && gapi.client) {
-    pushWords();
-    pushIndex();
-  } else {
-    pendingPush = true;
-  }
   putIndex();
   moveTop();
 }

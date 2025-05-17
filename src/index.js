@@ -20,12 +20,6 @@ function init() {
   });
 }
 
-function updateSpreadsheetId(event) {
-  const spreadsheetId = event.target.value;
-  localStorage.setItem("vocabee.spreadsheetId", spreadsheetId);
-  loadPlansOrCreate();
-}
-
 customElements.define(
   "plan-box",
   class extends HTMLElement {
@@ -176,36 +170,6 @@ function openDB(callback) {
   };
 }
 
-function putIndices() {
-  const progresses = document.getElementById("progresses");
-  const trElements = progresses.getElementsByTagName("tr");
-  const trs = [...trElements].slice(1);
-  const states = trs.map((tr) => {
-    const progress = tr.children[5].firstChild;
-    const level = parseInt(progress.id.slice(8));
-    let known = parseInt(progress.value);
-    if (known == 0) known = undefined;
-    return [level, known];
-  });
-  states.forEach((state) => {
-    const [level, known] = state;
-    putIndex(level, known);
-  });
-}
-
-function putIndex(level, known, callback) {
-  openDB((db) => {
-    const storeName = "index";
-    const data = { level: level, known: known };
-    const req = db.transaction(storeName, "readwrite")
-      .objectStore(storeName).put(data);
-    req.onsuccess = (e) => {
-      if (callback) callback(e);
-    };
-    req.onerror = () => console.log("failed to put");
-  });
-}
-
 function getIndex(db) {
   return new Promise((resolve, reject) => {
     let index;
@@ -243,75 +207,7 @@ function loadPlansFromIndexedDB(callback) {
   });
 }
 
-function loadPlansFromSheet(range) {
-  let clearedLevel = 0;
-  if (range.values) {
-    for (let i = 0; i < range.values.length; i++) {
-      const row = range.values[i];
-      const level = parseInt(row[0]);
-      const known = parseInt(row[1]) || 0;
-      const num = getPlanRange(level);
-      const rate = known * 100 / num || 0;
-      if (!document.getElementById("progress" + level)) {
-        const plan = createPlan(level - num + 1, level);
-        progresses.appendChild(plan);
-      }
-      loadPlan(level, known, rate);
-      if (95 <= rate && clearedLevel < level) {
-        clearedLevel = level;
-      }
-    }
-  }
-  return clearedLevel;
-}
-
-function loadPlansOrCreate() {
-  const spreadsheetId = document.getElementById("spreadsheetId").value;
-  if (spreadsheetId != "") {
-    gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: spreadsheetId,
-      range: "index!A1:B49",
-    }).then((response) => {
-      document.getElementById("spreadsheetIdError").classList.add("d-none");
-      const clearedLevel = loadPlansFromSheet(response.result);
-      updatePlan(clearedLevel);
-      putIndices();
-    }).catch((err) => {
-      switch (err.status) {
-        case 400:
-          addSheet(spreadsheetId, "index");
-          break;
-        case 404:
-          document.getElementById("spreadsheetIdError").classList.remove(
-            "d-none",
-          );
-          break;
-        default:
-          console.log(err);
-      }
-    });
-  } else {
-    createSpreadsheet();
-  }
-}
-
-function addSheet(spreadsheetId, title, callback) {
-  return gapi.client.sheets.spreadsheets.batchUpdate(
-    { spreadsheetId: spreadsheetId },
-    {
-      requests: [
-        { addSheet: { properties: { title: title } } },
-      ],
-    },
-  ).then((response) => {
-    if (callback) callback(response);
-  }).catch((err) => {
-    console.log(err);
-  });
-}
-
 loadConfig();
 init();
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
-document.getElementById("spreadsheetId").onchange = updateSpreadsheetId;
