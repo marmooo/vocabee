@@ -18,19 +18,6 @@ function init() {
   loadPlansFromIndexedDB();
 }
 
-customElements.define(
-  "plan-box",
-  class extends HTMLElement {
-    constructor() {
-      super();
-      const template = document.getElementById("plan-box").content.cloneNode(
-        true,
-      );
-      this.attachShadow({ mode: "open" }).appendChild(template);
-    }
-  },
-);
-
 function getPlanRange(level) {
   switch (true) {
     case level <= 1800:
