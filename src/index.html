@@ -33,6 +33,7 @@
     <link rel="manifest" href="/vocabee/favicon/site.webmanifest">
     <link class="drop-inline-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <style>
+      #plan { height:400px; overflow-y:scroll; }
       td:nth-of-type(1), th:nth-of-type(1) { padding-right: 0; }
       td:nth-of-type(2), th:nth-of-type(2) { padding-left: 0; }
       html[data-bs-theme="dark"] .favicon { filter: invert(1) hue-rotate(180deg); }
@@ -61,28 +62,51 @@
         </div>
       </noscript>
       <div class="row pt-3">
-        <div class="col-sm pb-4">
-          <div>
-            <table class="table table-sm table-striped text-center text-nowrap">
-              <tbody id="progresses">
-                <tr><th></th><th>単語数</th><th>レベル</th><th>英検</th><th>TOEIC</th><th>進捗</th></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=1-200">200</a></td><td>小6</td><td>5級</td><td></td><td><progress id="progress200" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=201-400">400</a></td><td>中1</td><td>4級</td><td>250</td><td><progress id="progress400" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=401-600">600</a></td><td>中2</td><td></td><td>350</td><td><progress id="progress600" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=601-800">800</a></td><td>中3</td><td>3級</td><td></td><td><progress id="progress800" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=801-1000">1000</a></td><td></td><td></td><td></td><td><progress id="progress1000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=1001-1200">1200</a></td><td>高1</td><td></td><td>400</td><td><progress id="progress1200" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=1201-1400">1400</a></td><td></td><td>準2級</td><td></td><td><progress id="progress1400" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=1401-1600">1600</a></td><td>高2</td><td></td><td></td><td><progress id="progress1600" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=1601-1800">1800</a></td><td></td><td>2級</td><td>500</td><td><progress id="progress1800" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=1801-2200">2200</a></td><td>高3</td><td></td><td>600</td><td><progress id="progress2200" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=2201-2600">2600</a></td><td></td><td></td><td></td><td><progress id="progress2600" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=2601-3000">3000</a></td><td>大学生</td><td>準1級</td><td>700</td><td><progress id="progress3000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=3001-4000">4000</a></td><td></td><td></td><td>800</td><td><progress id="progress4000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-                <tr><td></td><td><a href="/vocabee/drill/?q=4001-5000">5000</a></td><td>社会人</td><td>1級</td><td>900</td><td><progress id="progress5000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div id="plan" class="col-sm mb-4">
+          <table class="table table-sm table-striped text-center text-nowrap">
+            <tbody id="progresses">
+              <tr><th></th><th>単語数</th><th>レベル</th><th>英検</th><th>TOEIC</th><th>進捗</th></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=1-200">200</a></td><td>小6</td><td>5級</td><td></td><td><progress id="progress200" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=201-400">400</a></td><td>中1</td><td></td><td>250</td><td><progress id="progress400" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=401-600">600</a></td><td>中2</td><td>4級</td><td>350</td><td><progress id="progress600" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=601-800">800</a></td><td></td><td></td><td></td><td><progress id="progress800" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=801-1000">1000</a></td><td>中3</td><td>3級</td><td></td><td><progress id="progress1000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=1001-1200">1200</a></td><td>高1</td><td></td><td>400</td><td><progress id="progress1200" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=1201-1400">1400</a></td><td></td><td>準2級</td><td></td><td><progress id="progress1400" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=1401-1600">1600</a></td><td>高2</td><td></td><td></td><td><progress id="progress1600" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=1601-1800">1800</a></td><td></td><td>2級</td><td>500</td><td><progress id="progress1800" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=1801-2200">2200</a></td><td>高3</td><td></td><td>600</td><td><progress id="progress2200" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=2201-2600">2600</a></td><td></td><td></td><td></td><td><progress id="progress2600" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=2601-3000">3000</a></td><td>大学生</td><td>準1級</td><td>700</td><td><progress id="progress3000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=3001-4000">4000</a></td><td></td><td></td><td>800</td><td><progress id="progress4000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=4001-5000">5000</a></td><td>社会人</td><td>1級</td><td>900</td><td><progress id="progress5000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=5001-6000">6000</a></td><td></td><td></td><td></td><td><progress id="progress6000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=6001-7000">7000</a></td><td>海外中学</td><td></td><td></td><td><progress id="progress7000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=7001-8000">8000</a></td><td></td><td></td><td></td><td><progress id="progress8000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=8001-9000">9000</a></td><td>海外高校</td><td></td><td></td><td><progress id="progress9000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=9001-10000">10000</a></td><td></td><td></td><td></td><td><progress id="progress10000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=10001-11000">11000</a></td><td></td><td></td><td></td><td><progress id="progress11000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=11001-12000">12000</a></td><td>海外大学</td><td></td><td></td><td><progress id="progress12000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=12001-13000">13000</a></td><td></td><td></td><td></td><td><progress id="progress13000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=13001-14000">14000</a></td><td></td><td></td><td></td><td><progress id="progress14000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=14001-15000">15000</a></td><td>英語専門職</td><td></td><td></td><td><progress id="progress15000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=15001-16000">16000</a></td><td></td><td></td><td></td><td><progress id="progress16000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=16001-17000">17000</a></td><td>翻訳者</td><td></td><td></td><td><progress id="progress17000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=17001-18000">18000</a></td><td></td><td></td><td></td><td><progress id="progress18000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=18001-19000">19000</a></td><td></td><td></td><td></td><td><progress id="progress19000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=19001-20000">20000</a></td><td>海外大学院</td><td></td><td></td><td><progress id="progress20000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=20001-21000">21000</a></td><td></td><td></td><td></td><td><progress id="progress21000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=21001-22000">22000</a></td><td>英語探検家</td><td></td><td></td><td><progress id="progress22000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=22001-23000">23000</a></td><td></td><td></td><td></td><td><progress id="progress23000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=23001-24000">24000</a></td><td></td><td></td><td></td><td><progress id="progress24000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=24001-25000">25000</a></td><td>言語研究者</td><td></td><td></td><td><progress id="progress25000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=25001-26000">26000</a></td><td></td><td></td><td></td><td><progress id="progress26000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=26001-27000">27000</a></td><td>英語画家</td><td></td><td></td><td><progress id="progress27000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=27001-28000">28000</a></td><td></td><td></td><td></td><td><progress id="progress28000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=28001-29000">29000</a></td><td>英語音楽家</td><td></td><td></td><td><progress id="progress29000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+              <tr><td></td><td><a href="/vocabee/drill/?q=29001-30000">30000</a></td><td>達人</td><td></td><td></td><td><progress id="progress30000" class="w-100" max="100" value="0" title="0%"></progress></td></tr>
+            </tbody>
+          </table>
         </div>
         <div class="col-sm">
           <h5>学習データについて</h5>
