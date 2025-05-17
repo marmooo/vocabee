@@ -205,24 +205,23 @@ function setTest2LearningButton() {
   }
 }
 
-function loadEnjaListFromIndexedDB(level, callback) {
-  openDB((db) => {
-    const dict = {};
-    getAllWords(db, level).then((words) => {
-      words.forEach((word) => {
-        dict[word.lemma] = word.state;
-      });
-      enjaList = [];
-      fetch("/vocabee/data/" + level + ".tsv")
-        .then((response) => response.text())
-        .then((text) => {
-          text.split("\n").forEach((line) => {
-            const [en, ja] = line.split("\t");
-            enjaList.push([en, ja, dict[en]]);
-          });
-          callback();
-        });
+async function loadEnjaListFromIndexedDB(level, callback) {
+  const db = await openDB();
+  const dict = {};
+  getAllWords(db, level).then((words) => {
+    words.forEach((word) => {
+      dict[word.lemma] = word.state;
     });
+    enjaList = [];
+    fetch("/vocabee/data/" + level + ".tsv")
+      .then((response) => response.text())
+      .then((text) => {
+        text.split("\n").forEach((line) => {
+          const [en, ja] = line.split("\t");
+          enjaList.push([en, ja, dict[en]]);
+        });
+        callback();
+      });
   });
 }
 
@@ -281,16 +280,18 @@ function updatePlans(known, unlearned, learning) {
   updatePlan("learning", currLearning);
 }
 
-function openDB(callback) {
-  const req = indexedDB.open("vocabee");
-  req.onsuccess = (e) => callback(e.target.result);
-  req.onerror = () => console.log("failed to open db");
-  req.onupgradeneeded = (e) => {
-    const db = e.target.result;
-    db.createObjectStore("index", { keyPath: "level" });
-    const words = db.createObjectStore("words", { keyPath: "lemma" });
-    words.createIndex("level", "level", { unique: false });
-  };
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open("vocabee");
+    req.onsuccess = (e) => resolve(e.target.result);
+    req.onerror = () => reject(new Error("failed to open db"));
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      db.createObjectStore("index", { keyPath: "level" });
+      const words = db.createObjectStore("words", { keyPath: "lemma" });
+      words.createIndex("level", "level", { unique: false });
+    };
+  });
 }
 
 function getAllWords(db, level) {
@@ -322,23 +323,22 @@ function getWordState(db, lemma) {
   });
 }
 
-function putIndex(callback) {
-  openDB((db) => {
-    const storeName = "index";
-    let known = 0;
-    enjaList.forEach((enja) => {
-      if (enja[2] && enja[2].slice(-1) == "o") {
-        known += 1;
-      }
-    });
-    const data = { level: level, known: known };
-    const req = db.transaction(storeName, "readwrite")
-      .objectStore(storeName).put(data);
-    req.onsuccess = (e) => {
-      if (callback) callback(e);
-    };
-    req.onerror = () => console.log("failed to put");
+async function putIndex(callback) {
+  const db = await openDB();
+  const storeName = "index";
+  let known = 0;
+  enjaList.forEach((enja) => {
+    if (enja[2] && enja[2].slice(-1) == "o") {
+      known += 1;
+    }
   });
+  const data = { level: level, known: known };
+  const req = db.transaction(storeName, "readwrite")
+    .objectStore(storeName).put(data);
+  req.onsuccess = (e) => {
+    if (callback) callback(e);
+  };
+  req.onerror = () => console.log("failed to put");
 }
 
 function putWordState(db, lemma, state, callback) {
@@ -352,22 +352,20 @@ function putWordState(db, lemma, state, callback) {
   req.onerror = () => console.log("failed to put");
 }
 
-function putWord(lemma, currentState) {
-  openDB((db) => {
-    getWordState(db, lemma).then((state) => {
-      state ? state += currentState : state = currentState;
-      putWordState(db, lemma, state);
-    });
+async function putWord(lemma, currentState) {
+  const db = await openDB();
+  getWordState(db, lemma).then((state) => {
+    state ? state += currentState : state = currentState;
+    putWordState(db, lemma, state);
   });
 }
 
-function putWords() {
-  openDB((db) => {
-    enjaList.forEach((enja) => {
-      const lemma = enja[0];
-      const state = enja[2];
-      putWordState(db, lemma, state);
-    });
+async function putWords() {
+  const db = await openDB();
+  enjaList.forEach((enja) => {
+    const lemma = enja[0];
+    const state = enja[2];
+    putWordState(db, lemma, state);
   });
 }
 
@@ -377,9 +375,9 @@ function putWordsBase(id, state) {
   const poses = lemmas.map((lemma) => {
     return enjaList.findIndex((enja) => enja[0] == lemma); // TODO: slow?
   });
-  lemmas.forEach((lemma, i) => {
+  lemmas.forEach(async (lemma, i) => {
     updateEnjaListState(poses[i], state);
-    putWord(lemma, state);
+    await putWord(lemma, state);
   });
   return poses;
 }
@@ -450,7 +448,7 @@ function updateViewByLearning() {
   updatePlans(knownCount, 0, -knownCount);
 }
 
-function test1moveTop() {
+async function test1moveTop() {
   switch (test1method) {
     case "known": {
       updateViewByKnown();
@@ -472,7 +470,7 @@ function test1moveTop() {
   } else {
     pendingPush = true;
   }
-  putIndex();
+  await putIndex();
   moveTop();
 }
 
@@ -833,7 +831,7 @@ function test2moveTop() {
   moveTop();
 }
 
-function test2put(lemma, isCorrect) {
+async function test2put(lemma, isCorrect) {
   const lemmaPos = enjaList.findIndex((enja) => enja[0] == lemma);
   let state = enjaList[lemmaPos][2];
   let currentState;
@@ -862,14 +860,13 @@ function test2put(lemma, isCorrect) {
       updateProgress(lemmaPos, -1);
     }
   }
-  openDB((db) => {
-    state ? state += currentState : state = currentState;
-    putWordState(db, lemma, state);
-    updatePlans(known, unlearned, learning);
-  });
+  const db = await openDB();
+  state ? state += currentState : state = currentState;
+  putWordState(db, lemma, state);
+  updatePlans(known, unlearned, learning);
 }
 
-function test2select(event) {
+async function test2select(event) {
   const buttons = [...document.getElementById("choices").children];
   const choices = test2problems[test2count - 1];
   const eiwa = document.getElementById("testType1").checked;
@@ -880,7 +877,7 @@ function test2select(event) {
     playAudio("correct", 0.3);
     event.target.textContent = "⭕ " + event.target.textContent;
     const answerLemma = choices.find((c) => c.isAnswer).en;
-    test2put(answerLemma, isCorrect);
+    await test2put(answerLemma, isCorrect);
     if (test2count > testLength) {
       document.getElementById("score").textContent = test2score;
       document.getElementById("testLength").textContent = testLength;
@@ -1046,11 +1043,11 @@ function getAward(level) {
 // }
 
 function initFromSheet(range) {
-  loadEnjaListFromSheet(range, () => {
+  loadEnjaListFromSheet(range, async () => {
     const [planStates, progressStates] = countupStates();
     loadPlans(planStates);
     loadProgresses(progressStates);
-    putWords();
+    await putWords();
   });
   setAutoReload();
 }
