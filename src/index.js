@@ -134,6 +134,23 @@ function importIndexedDB(dbName, jsonData) {
   });
 }
 
+function deleteIndexedDB(dbName) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.deleteDatabase(dbName);
+    request.onsuccess = () => {
+      alert("データを削除しました。");
+      resolve();
+    };
+    request.onerror = () => {
+      alert("データの削除に失敗しました。");
+      reject(request.error);
+    };
+    request.onblocked = () => {
+      alert("データの削除がブロックされました。タブを閉じてください。");
+    };
+  });
+}
+
 async function importDB() {
   const json = await navigator.clipboard.readText();
   try {
@@ -150,9 +167,14 @@ async function exportDB() {
   alert("クリップボードにコピーしました。");
 }
 
+async function deleteDB() {
+  await deleteIndexedDB("vocabee");
+}
+
 loadConfig();
 loadPlansFromIndexedDB();
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("importDB").onclick = importDB;
 document.getElementById("exportDB").onclick = exportDB;
+document.getElementById("deleteDB").onclick = deleteDB;
