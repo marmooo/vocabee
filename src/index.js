@@ -32,7 +32,7 @@ function loadPlan(key, value, rate) {
     progress.max = max;
     progress.value = value;
     progress.title = Math.ceil(rate) + "%";
-    if (95 <= rate) {
+    if (100 <= rate) {
       const td = progress.parentNode.parentNode.firstChild;
       td.textContent = "✔️";
     }
