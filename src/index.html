@@ -114,8 +114,22 @@
             <p>学習データは端末上の IndexedDB に保存されるので安全です。
             また学習データはいつでも CSV 形式でインポート/エクスポートできます。
             </p>
+            <div class="pb-3 text-center">
+              <button id="importDB" class="btn p-0" type="button">
+                <svg width="32" height="32" viewBox="0 0 20 20" fill="currentcolor">
+                  <path d="M17 12v5H3v-5H1v5a2 2 0 002 2h14a2 2 0 002-2v-5z"></path><path d="M15 7l-5-6-5 6h4v8h2V7h4z"></path>
+                </svg>
+                インポート
+              </button>
+              <button id="exportDB" class="btn p-0" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M17 12v5H3v-5H1v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5z"/><path d="M10 15l5-6h-4V1H9v8H5l5 6z"/>
+                </svg>
+                エクスポート
+              </button>
+            </div>
           </div>
-          <h5>おすすめの学習方法</h5>
+          <h5 class="pt-3">おすすめの学習方法</h5>
           <ol>
             <li>自分に合ったレベルから始める</li>
             <li>単語を分類しながら覚える</li>
