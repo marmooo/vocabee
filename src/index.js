@@ -14,10 +14,6 @@ function toggleDarkMode() {
   }
 }
 
-function init() {
-  loadPlansFromIndexedDB();
-}
-
 function getPlanRange(level) {
   switch (true) {
     case level <= 1800:
@@ -28,17 +24,6 @@ function getPlanRange(level) {
       return 1000;
   }
 }
-
-// function getSheetPos(level) {
-//   switch (true) {
-//     case level <= 1600:
-//       return level / 200;
-//     case level <= 2600:
-//       return (level - 1800) / 400 + 9;
-//     default:
-//       return (level - 3000) / 1000 + 12;
-//   }
-// }
 
 function loadPlan(key, value, rate) {
   const progress = document.getElementById("progress" + key);
@@ -54,16 +39,18 @@ function loadPlan(key, value, rate) {
   }
 }
 
-function openDB(callback) {
-  const req = indexedDB.open("vocabee");
-  req.onsuccess = (e) => callback(e.target.result);
-  req.onerror = () => console.log("failed to open db");
-  req.onupgradeneeded = (e) => {
-    const db = e.target.result;
-    db.createObjectStore("index", { keyPath: "level" });
-    const words = db.createObjectStore("words", { keyPath: "lemma" });
-    words.createIndex("level", "level", { unique: false });
-  };
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open("vocabee");
+    req.onsuccess = (e) => resolve(e.target.result);
+    req.onerror = () => reject(new Error("failed to open db"));
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      db.createObjectStore("index", { keyPath: "level" });
+      const words = db.createObjectStore("words", { keyPath: "lemma" });
+      words.createIndex("level", "level", { unique: false });
+    };
+  });
 }
 
 function getIndex(db) {
@@ -80,21 +67,19 @@ function getIndex(db) {
   });
 }
 
-function loadPlansFromIndexedDB() {
-  openDB((db) => {
-    getIndex(db).then((plans) => {
-      plans.forEach((plan) => {
-        const level = plan.level;
-        const known = plan.known || 0;
-        const num = getPlanRange(level);
-        const rate = known * 100 / num || 0;
-        loadPlan(level, known, rate);
-      });
-    });
+async function loadPlansFromIndexedDB() {
+  const db = await openDB();
+  const plans = await getIndex(db);
+  plans.forEach((plan) => {
+    const level = plan.level;
+    const known = plan.known || 0;
+    const num = getPlanRange(level);
+    const rate = known * 100 / num || 0;
+    loadPlan(level, known, rate);
   });
 }
 
 loadConfig();
-init();
+loadPlansFromIndexedDB();
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
