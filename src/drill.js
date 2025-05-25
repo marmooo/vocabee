@@ -55,6 +55,10 @@ function createAudioContext() {
 }
 
 function unlockAudio() {
+  const uttr = new SpeechSynthesisUtterance("");
+  uttr.lang = "en-US";
+  speechSynthesis.speak(uttr);
+
   if (audioContext) {
     audioContext.resume();
   } else {
@@ -62,7 +66,7 @@ function unlockAudio() {
     loadAudio("correct", "/vocabee/mp3/correct3.mp3");
     loadAudio("incorrect", "/vocabee/mp3/incorrect1.mp3");
   }
-  document.removeEventListener("pointerdown", unlockAudio);
+  document.removeEventListener("click", unlockAudio);
   document.removeEventListener("keydown", unlockAudio);
 }
 
@@ -1052,5 +1056,5 @@ test2getTrs().forEach((tr) => {
     loopVoice(tds[1].textContent, 1);
   };
 });
-document.addEventListener("pointerdown", unlockAudio, { once: true });
+document.addEventListener("click", unlockAudio, { once: true });
 document.addEventListener("keydown", unlockAudio, { once: true });
