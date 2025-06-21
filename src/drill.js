@@ -1,7 +1,7 @@
 import {
   Carousel,
   Modal,
-} from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/+esm";
+} from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/+esm";
 
 let level;
 let enjaList = [];
