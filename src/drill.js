@@ -959,32 +959,42 @@ function getAward(level) {
       return "中2";
     case level <= 1000:
       return "中3";
-    case level <= 1400:
+    case level <= 1200:
       return "高1";
-    case level <= 1800:
+    case level <= 1600:
       return "高2";
-    case level <= 2600:
+    case level <= 2200:
       return "高3";
-    case level <= 4000:
+    case level <= 3000:
       return "大学生";
-    case level <= 9000:
+    case level <= 5000:
       return "社会人";
+    case level <= 7000:
+      return "海外中学";
+    case level <= 9000:
+      return "海外高校";
     case level <= 10000:
-      return "expatriater";
+      return "海外大学";
+    case level <= 12000:
+      return "英語専門職";
     case level <= 15000:
-      return "fighter";
+      return "翻訳者";
+    case level <= 17000:
+      return "英語の達人";
+    case level <= 18000:
+      return "海外大学院";
     case level <= 20000:
-      return "knight";
+      return "英語探検家";
+    case level <= 22000:
+      return "英語博士";
     case level <= 25000:
-      return "interpreter";
-    case level <= 30000:
-      return "native";
-    case level <= 35000:
-      return "magician";
-    case level <= 40000:
-      return "demon";
+      return "言語研究者";
+    case level <= 27000:
+      return "英語画家";
+    case level <= 28000:
+      return "英語音楽家";
     default:
-      return "god";
+      return "英語ist";
   }
 }
 
