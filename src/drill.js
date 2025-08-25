@@ -204,11 +204,11 @@ async function loadEnjaListFromIndexedDB(level, callback) {
       dict[word.lemma] = word.state;
     });
     enjaList = [];
-    fetch("/vocabee/data/" + level + ".tsv")
+    fetch("/vocabee/data/" + level + ".csv")
       .then((response) => response.text())
       .then((text) => {
         text.split("\n").forEach((line) => {
-          const [en, ja] = line.split("\t");
+          const [en, ja] = line.split(",");
           enjaList.push([en, ja, dict[en]]);
         });
         callback();
@@ -717,12 +717,14 @@ function test2setButtons(eiwa, buttons, choices) {
     document.getElementById("test2lemma").textContent = choices[0].en;
     loopVoice(choices[0].en, 3);
   } else {
-    document.getElementById("test2lemma").textContent = choices[0].ja;
+    const ja = choices[0].ja.replace(/［[^［]*］/g, "");
+    document.getElementById("test2lemma").textContent = ja;
   }
   shuffle(choices).forEach((choice, i) => {
     buttons[i].classList.remove("text-danger");
     if (eiwa) {
-      buttons[i].textContent = choice.ja;
+      const ja = choice.ja.replace(/［[^［]*］/g, "");
+      buttons[i].textContent = ja;
     } else {
       buttons[i].textContent = choice.en;
     }
@@ -854,9 +856,9 @@ async function test2select(event) {
     const isCorrect = test2countScore();
     test2score += isCorrect;
     playAudio("correct", 0.3);
-    event.target.textContent = "⭕ " + event.target.textContent;
-    const answerLemma = choices.find((c) => c.isAnswer).en;
-    await test2put(answerLemma, isCorrect);
+    const answer = choices.find((c) => c.isAnswer);
+    event.target.textContent = "⭕ " + answer.ja;
+    await test2put(answer.en, isCorrect);
     if (test2count > testLength) {
       document.getElementById("score").textContent = test2score;
       document.getElementById("testLength").textContent = testLength;
