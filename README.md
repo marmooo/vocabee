@@ -5,11 +5,11 @@
 ## Installation
 
 install [marmooo/mGSL](https://github.com/marmooo/mgsl) licensed under the
-[CC-BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+[CC-BY-SA-4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 
 ## Build
 
 ```
-deno run --allow-read --allow-write build.js
+deno run -RW build-dict.js
 bash build.sh
 ```
