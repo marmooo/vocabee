@@ -3,6 +3,7 @@ import {
   Modal,
 } from "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/+esm";
 
+const progresses = document.querySelectorAll("#seqTest progress");
 let level;
 let enjaList = [];
 let draggies = [];
@@ -237,14 +238,22 @@ function loadPlans(state) {
 }
 
 function loadProgresses(states) {
-  const progresses = [...document.getElementById("seqTest").children];
-  progresses.forEach((progress, i) => {
+  const level = Number(document.getElementById("levelFrom").textContent);
+  const trs = document.getElementById("seqTest").querySelectorAll("tr");
+  const num = enjaList.length / 10;
+  for (let i = 0; i < trs.length; i++) {
+    const tds = trs[i].getElementsByTagName("td");
+    const label = tds[0];
+    const range = `${level + num * i}-${level + num * (i + 1) - 1}`;
+    label.textContent = range;
+    const progress = tds[1].querySelector("progress");
     const [_unlearned, known] = states[i];
     const rate = Math.ceil(known / enjaList.length * 1000);
-    progress.max = enjaList.length / 10;
+    progress.max = num;
     progress.value = known;
     progress.title = rate + "%";
-  });
+    progress.dataset.range = range;
+  }
 }
 
 function updatePlan(id, count) {
@@ -391,7 +400,6 @@ function updateEnjaListState(lemmaPos, state) {
 
 function updateProgresses(lemmaPoses, knownCount) {
   const data = {};
-  const progresses = [...document.getElementById("seqTest").children];
   lemmaPoses.forEach((lemmaPos) => {
     const progressPos = Math.floor(lemmaPos / (enjaList.length / 10));
     if (progressPos in data) {
@@ -415,7 +423,6 @@ function updateProgresses(lemmaPoses, knownCount) {
 }
 
 function updateProgress(lemmaPos, knownCount) {
-  const progresses = [...document.getElementById("seqTest").children];
   const progressPos = Math.floor(lemmaPos / (enjaList.length / 10));
   const progress = progresses[progressPos];
   const knownValue = parseInt(progress.value) + knownCount;
@@ -641,7 +648,7 @@ class Choice {
   }
 }
 
-function test2selectAnswers(type, progressPos) {
+function test2selectAnswers(type, progress) {
   const tmpProblems = enjaList.concat();
   switch (type) {
     case "all": {
@@ -659,16 +666,20 @@ function test2selectAnswers(type, progressPos) {
       }
     }
     default: {
-      const progressLength = tmpProblems.length / 10;
-      const pos = progressLength * progressPos;
-      const answers = tmpProblems.slice(pos, pos + progressLength);
+      const range = progress.dataset.range;
+      document.getElementById("currRange").textContent = range;
+      const [from, to] = range.split("-").map((x) => Number(x));
+      const levelFrom = level - (to - from + 1) * 10;
+      const problemFrom = from - levelFrom - 1;
+      const problemTo = to - levelFrom;
+      const answers = tmpProblems.slice(problemFrom, problemTo);
       return shuffle(answers).slice(0, maxTestLength);
     }
   }
 }
 
-function test2generateProblems(type, progressPos) {
-  const answers = test2selectAnswers(type, progressPos);
+function test2generateProblems(type, progress) {
+  const answers = test2selectAnswers(type, progress);
   testLength = answers.length;
   const problems = [];
   answers.forEach((answer) => {
@@ -774,18 +785,15 @@ function test2learning() {
 }
 
 function test2seq(event) {
-  const progresses = [...document.getElementById("seqTest").children];
-  const progressPos = progresses
-    .findIndex((progress) => progress == event.target);
-  test2base("seq", progressPos);
+  test2base("seq", event.currentTarget);
 }
 
-function test2base(type, progressPos) {
+function test2base(type, progress) {
   const results = test2getTrs();
   results.forEach((result) => {
     result.classList.remove("table-danger");
   });
-  test2problems = test2generateProblems(type, progressPos);
+  test2problems = test2generateProblems(type, progress);
   if (test2problems.length == 0) return;
   test2count = 1;
   test2score = 0;
@@ -924,29 +932,6 @@ function initFromIndexedDB() {
   });
 }
 
-// function resetPlan(clearedLevel) {
-//   const progresses = document.getElementById("progresses");
-//   const trElements = progresses.getElementsByTagName("tr");
-//   const trs = [...trElements].slice(1);
-//   const pos = trs.findIndex((tr) => {
-//     const level = parseInt(tr.children[1].textContent);
-//     if (clearedLevel < level) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-//   trs.slice(0, pos - 7).forEach((tr) => {
-//     tr.remove();
-//   });
-//   const afterElements = trs.slice(pos);
-//   for (let i = 1; i <= 3 - afterElements.length; i++) {
-//     const key = clearedLevel + 1000 * (afterElements.length + i);
-//     const plan = createPlan(key - 999, key);
-//     progresses.appendChild(plan);
-//   }
-// }
-
 function getAward(level) {
   switch (true) {
     case level <= 200:
@@ -1036,9 +1021,9 @@ document.getElementById("test2learning").onclick = test2learning;
 [...document.getElementById("choices").children].forEach((btn) => {
   btn.onclick = test2select;
 });
-[...document.getElementById("seqTest").children].forEach((progress) => {
-  progress.onclick = test2seq;
-});
+for (let i = 0; i < progresses.length; i++) {
+  progresses[i].onclick = test2seq;
+}
 modalNode.addEventListener("shown.bs.modal", () => {
   const obj = document.getElementById("modal-voice");
   const en = obj.previousElementSibling.textContent;
